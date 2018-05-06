@@ -1,4 +1,2 @@
 # supreme-guacamole
-
-abc
-123
+ab

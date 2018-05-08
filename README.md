@@ -1,2 +1,2 @@
 # supreme-guacamole
-**This text is _extremely_ important* ~~Hi~~
+~~**This text is _extremely_ important*~~ ~~Hi~~

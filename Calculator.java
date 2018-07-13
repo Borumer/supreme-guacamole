@@ -169,12 +169,12 @@ public class Calculator extends PApplet  {
 						Boolean pressedNumber = listName.get(i).equals(numberStr[l]);
 						
 						if (pressedNumber && listName.get(o).equals("+") && pressedEquals) {
-							//System.out.println("Adding Numbers...");
+							System.out.println("Adding Numbers...");
 							listName.add(addition(listName));
 						}
 						else if (pressedNumber && listName.get(o).equals("-") && pressedEquals) {
 							System.out.println("Subtracting Numbers");
-							//listName.add(difference(listName));
+							listName.add(difference(listName));
 						}
 					}
 				}

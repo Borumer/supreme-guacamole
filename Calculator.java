@@ -160,10 +160,11 @@ public class Calculator extends PApplet  {
         
 		public void getCalcFunctionality(int i) {    
 			String[] numberStr = {"1", "2", "3", "4", "5", "6", "7", "8", "9"};
+			int loopSize = listName.size();
 			
 			for (int l = 0; l < numberStr.length; l++) { // Looping through numbers array
-				for(int o = 0; o < listName.size(); o++) {
-					for (int p = 0; p < listName.size(); p++) {
+				for(int o = 0; o < loopSize; o++) {
+					for (int p = 0; p < loopSize; p++) {
 						Boolean pressedEquals = listName.get(p).equals("=");
 						Boolean pressedNumber = listName.get(i).equals(numberStr[l]);
 						

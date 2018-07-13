@@ -15,6 +15,7 @@ public class Calculator extends PApplet  {
 	float screenMargin = 40;
 	float padding = 15;
 	
+	ArrayList<String> listName =  new ArrayList<String>();
 	float w = 0;
 	float h = 0;
 	
@@ -62,10 +63,15 @@ public class Calculator extends PApplet  {
 		rect(screenMargin, screenMargin, w, h);
 		fill(255);
 		rect(screenMargin + padding, screenMargin + padding, w - 2 * padding, h / 8);
+		drawScreen();
+	}
+	
+	public void drawScreen() {
 		fill(0, 0, 0);
 		textAlign(RIGHT, CENTER);
 		text(String.join("", listName), 300, 80);
 	}
+	
 	public void drawButtons()  {
 		w = (width - totalMargin);
 		h = (height - totalMargin);
@@ -102,23 +108,128 @@ public class Calculator extends PApplet  {
 	
 	public String addition(ArrayList<String> arr) {
 		
-		//ArrayList<Integer> ClickedNumbers = new ArrayList<Integer>();
-		for (int q = 0; q < arr.indexOf("+"); q++) {
-	//		ClickedNumbers.add(arr.get(q));
+		ArrayList<String> ClickedNumbers = new ArrayList<String>();
+		int plusIndex = arr.indexOf("+");
+		System.out.println(plusIndex);
+		for (int i = 0; i < plusIndex; i++) {
+			ClickedNumbers.add(arr.get(i)); // Adds all the number strings before the plus sign to clicked numbers
 		}
-		int int1 = 1;
-		int int2 = 2;
+		int int1 = StringToInt(String.join("", ClickedNumbers)); // Converts a joined array list of the numbers before the plus sign into a string
+		System.out.println("int1: " + int1);
+		
+		ClickedNumbers.clear();
+		int equalsIndex = arr.indexOf("=");
+		
+		for (int i = plusIndex + 1; i < equalsIndex; i++) {
+			ClickedNumbers.add(arr.get(i));
+		}
+		int int2 = StringToInt(String.join("", ClickedNumbers)); // Converts a joined array list of numbers after the plus sign into a string
+		System.out.println("int2:" + int2);
+		
 		String total = intToString(int1 + int2);
+		System.out.println(total);
 		return total;
 	}
 	public String subtraction(ArrayList<String> arr) {
-		int int1 = 5;
-		int int2 = 2;
+		ArrayList<String> ClickedNumbers = new ArrayList<String>();
+		int minusIndex = arr.indexOf("-");
+		System.out.println("minus index" + minusIndex);
+		
+		for (int i = 0; i < minusIndex; i++) {
+			ClickedNumbers.add(arr.get(i)); // Adds all the number strings before the plus sign to clicked numbers
+		}
+		int int1 = StringToInt(String.join("", ClickedNumbers)); // Converts a joined array list of the numbers before the plus sign into a string
+		System.out.println("int1: " + int1);
+		
+		ClickedNumbers.clear();
+		int equalsIndex = arr.indexOf("=");
+		
+		for (int i = minusIndex + 1; i < equalsIndex; i++) {
+			ClickedNumbers.add(arr.get(i));
+		}
+		int int2 = StringToInt(String.join("", ClickedNumbers)); // Converts a joined array list of numbers after the plus sign into a string
+		System.out.println("int2:" + int2);
+		
 		String difference = intToString(int1 - int2);
+		System.out.println("Difference: " + difference);
 		return difference;
 	}
 	
-	ArrayList<String> listName =  new ArrayList<String>();
+	public String multiplication(ArrayList<String> arr) {
+		ArrayList<String> ClickedNumbers = new ArrayList<String>();
+		int timesIndex = arr.indexOf("*");
+		System.out.println("Times index" + timesIndex);
+		
+		for (int i = 0; i < timesIndex; i++) {
+			ClickedNumbers.add(arr.get(i)); // Adds all the number strings before the plus sign to clicked numbers
+		}
+		int int1 = StringToInt(String.join("", ClickedNumbers)); // Converts a joined array list of the numbers before the plus sign into a string
+		System.out.println("int1: " + int1);
+		
+		ClickedNumbers.clear();
+		int equalsIndex = arr.indexOf("=");
+		
+		for (int i = timesIndex + 1; i < equalsIndex; i++) {
+			ClickedNumbers.add(arr.get(i));
+		}
+		int int2 = StringToInt(String.join("", ClickedNumbers)); // Converts a joined array list of numbers after the plus sign into a string
+		System.out.println("int2:" + int2);
+		
+		String product = intToString(int1 * int2);
+		System.out.println("Product: " + product);
+		return product;
+	}
+	
+	public String division(ArrayList<String> arr) {
+		ArrayList<String> ClickedNumbers = new ArrayList<String>();
+		int divideIndex = arr.indexOf("/");
+		System.out.println("divide index" + divideIndex);
+		
+		for (int i = 0; i < divideIndex; i++) {
+			ClickedNumbers.add(arr.get(i)); // Adds all the number strings before the plus sign to clicked numbers
+		}
+		int int1 = StringToInt(String.join("", ClickedNumbers)); // Converts a joined array list of the numbers before the plus sign into a string
+		System.out.println("int1: " + int1);
+		
+		ClickedNumbers.clear();
+		int equalsIndex = arr.indexOf("=");
+		
+		for (int i = divideIndex + 1; i < equalsIndex; i++) {
+			ClickedNumbers.add(arr.get(i));
+		}
+		int int2 = StringToInt(String.join("", ClickedNumbers)); // Converts a joined array list of numbers after the plus sign into a string
+		System.out.println("int2:" + int2);
+		
+		String quotient = intToString(int1 / int2);
+		System.out.println("Quotient: " + quotient);
+		return quotient;
+	}
+	
+	public String moduloOperation(ArrayList<String> arr) {
+		ArrayList<String> ClickedNumbers = new ArrayList<String>();
+		int modulusIndex = arr.indexOf("%");
+		System.out.println("Modulus index" + modulusIndex);
+		
+		for (int i = 0; i < modulusIndex; i++) {
+			ClickedNumbers.add(arr.get(i)); // Adds all the number strings before the plus sign to clicked numbers
+		}
+		int int1 = StringToInt(String.join("", ClickedNumbers)); // Converts a joined array list of the numbers before the plus sign into a string
+		System.out.println("int1: " + int1);
+		
+		ClickedNumbers.clear();
+		int equalsIndex = arr.indexOf("=");
+		
+		for (int i = modulusIndex + 1; i < equalsIndex; i++) {
+			ClickedNumbers.add(arr.get(i));
+		}
+		int int2 = StringToInt(String.join("", ClickedNumbers)); // Converts a joined array list of numbers after the plus sign into a string
+		System.out.println("int2:" + int2);
+		
+		String modulusResult = intToString(int1 % int2);
+		System.out.println("Modulus Result " + modulusResult);
+		return modulusResult;
+	}
+	
 	public class GridSquare{
 
         public float x;
@@ -157,34 +268,50 @@ public class Calculator extends PApplet  {
 			value = text2Display[i][j];
 			text(value, x + squarePadding, y + squarePadding);
     	}
-        
-		public void getCalcFunctionality(int i) {    
+        final int loopSize = listName.size();
+
+		public void getCalcFunctionality() {
 			String[] numberStr = {"1", "2", "3", "4", "5", "6", "7", "8", "9"};
-			int loopSize = listName.size();
-			
-			for (int l = 0; l < numberStr.length; l++) { // Looping through numbers array
-				for(int o = 0; o < loopSize; o++) {
-					for (int p = 0; p < loopSize; p++) {
-						Boolean pressedEquals = listName.get(p).equals("=");
-						Boolean pressedNumber = listName.get(i).equals(numberStr[l]);
-						
-						if (pressedNumber && listName.get(o).equals("+") && pressedEquals) {
+			String result = "";
+				for (int l = 0; l < numberStr.length; l++) { // Looping through numbers array
+					Boolean pressedEquals = listName.contains("=");
+					Boolean pressedNumber = listName.contains(numberStr[l]);
+					if (pressedNumber && pressedEquals) {
+						if (listName.contains("+")) {
 							System.out.println("Adding Numbers...");
 							listName.add(addition(listName));
+							result = addition(listName);
 						}
-						else if (pressedNumber && listName.get(o).equals("-") && pressedEquals) {
+						else if (listName.contains("-")) {
 							System.out.println("Subtracting Numbers");
-							listName.add(difference(listName));
+							listName.add(subtraction(listName));
+							result = subtraction(listName);
+						}
+						else if (listName.contains("*")) {
+							System.out.println("Multiplying Numbers...");
+							listName.add(multiplication(listName));
+							result = multiplication(listName);
+						}
+						else if (listName.contains("/")) {
+							System.out.println("Dividing Numbers...");
+							listName.add(division(listName));
+							result = division(listName);
+						}
+						else if (listName.contains("%")) {
+							System.out.println("Modulufying Numbers...");
+							listName.add(moduloOperation(listName));
+							result = moduloOperation(listName);
 						}
 					}
+					
 				}
-			}
-
-    		if (listName.get(i).equals("=")) { // See if the user clicked equals
-    			listName.clear(); // Clears screen to just show result
-       		}
-    		else if (listName.get(i).equals("C")) {
+    		if (listName.contains("C")) {
     			listName.clear(); // Clears the "Screen" when C is clicked by clearing the array
+    		}
+    		else if(listName.contains("=")) {
+    			listName.clear(); 
+    			listName.add(result);
+    			drawScreen();
     		}
        	}
     }
@@ -193,9 +320,7 @@ public class Calculator extends PApplet  {
 		for (int i = 0; i < rows; i++) {
 			for (int j = 0; j < textToDisplay[i].length; j++) {
 				buttons[i][j].onClick(mouseX, mouseY);
-				for (int k = 0; k < listName.size(); k++) {
-					buttons[i][j].getCalcFunctionality(k); 
-				}
+				buttons[i][j].getCalcFunctionality(); 
 			}
 		}
 	}

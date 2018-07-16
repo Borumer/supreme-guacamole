@@ -1,224 +1,224 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 	
-	float screenMargin = 40;
-	float padding = 15;
-	
-	ArrayList<String> listName =  new ArrayList<String>();
-	float w = 0;
-	float h = 0;
-	
-	float totalMargin = 2 * screenMargin;
-	
-	String[][] textToDisplay = new String[][] {
-		{
-			"1", "4", "7", ".", "C"
-		}, {
-			"2", "5", "8", "0", "^"
-		}, {
-			"3", "6", "9", "±", "%"
-		}, {
-			"*", "+", "-", "/", "="
-		}
+float screenMargin = 40;
+float padding = 15;
+
+ArrayList<String> listName =  new ArrayList<String>();
+float w = 0;
+float h = 0;
+
+float totalMargin = 2 * screenMargin;
+
+String[][] textToDisplay = new String[][] {
+	{
+		"1", "4", "7", ".", "C"
+	}, {
+		"2", "5", "8", "0", "^"
+	}, {
+		"3", "6", "9", "±", "%"
+	}, {
+		"*", "+", "-", "/", "="
+	}
 };
-	int rows = textToDisplay.length;
-	int cols = textToDisplay[2].length;
-	
-	GridSquare[][] buttons;
-	
-	public void settings() {
-		size(400, 500);
-	}
-	public void setup() {
-	
-		background(255, 255, 255);
-		for (String[] outerArray: textToDisplay) {
-			for (String element: outerArray) {
-				System.out.println(element);
-			}
-		}
-		System.out.println(Arrays.deepToString(textToDisplay));
-	}
-	public void draw() {
-		drawCalculator();
-		drawButtons();
-	}
-	
-	public void drawCalculator() {
-		w = (width - totalMargin);
-		h = (height - totalMargin);
-		rectMode(CORNER);
-		fill(125, 125, 125);
-		rect(screenMargin, screenMargin, w, h);
-		fill(255);
-		rect(screenMargin + padding, screenMargin + padding, w - 2 * padding, h / 8);
-		drawScreen();
-	}
-	
-	public void drawScreen() {
-		fill(0, 0, 0);
-		textAlign(RIGHT, CENTER);
-		text(String.join("", listName), 300, 80);
-	}
-	
-	public void drawButtons()  {
-		w = (width - totalMargin);
-		h = (height - totalMargin);
-		buttons = new GridSquare[rows][cols];
-		float margin = 65;
-		float calcMarginX = 0;
-		float dimensions = 45;
-		float totalWidth = margin + dimensions * (cols - 1);
-		float idontevencareanymore = 130;
+int rows = textToDisplay.length;
+int cols = textToDisplay[2].length;
 
-		
-		for (int i = 0; i < rows; i++) {
-			for (int j = 0; j < textToDisplay[i].length; j++) {
-				calcMarginX = w - totalWidth;
-				calcMarginX /= 2;
-				calcMarginX += screenMargin;
-				buttons[i][j] = new GridSquare(i * margin + calcMarginX, j * margin + idontevencareanymore, dimensions, dimensions);
-			}
-		}
-		for (int i = 0; i < rows; i++) {
-			for (int j = 0; j < textToDisplay[i].length; j++) {
-				buttons[i][j].displayText(textToDisplay, i, j);
-			}
-		}
-		
-	}
-  
-  public String doubleToString(double dble) {
-    return String.valueOf(dble);
-  }
+GridSquare[][] buttons;
 
-  public double StringToDouble(String string) {
-    return Double.parseDouble(string);
-  }
-	
-	public String addition(ArrayList<String> arr) {
-		
-		ArrayList<String> ClickedNumbers = new ArrayList<String>();
-		int plusIndex = arr.indexOf("+");
-		System.out.println(plusIndex);
-		for (int i = 0; i < plusIndex; i++) {
-			ClickedNumbers.add(arr.get(i)); // Adds all the number strings before the plus sign to clicked numbers
+public void settings() {
+	size(400, 500);
+}
+public void setup() {
+
+	background(255, 255, 255);
+	for (String[] outerArray: textToDisplay) {
+		for (String element: outerArray) {
+			System.out.println(element);
 		}
-		double double1 = StringToDouble(String.join("", ClickedNumbers)); // Converts a joined array list of the numbers before the plus sign into a string
-		System.out.println("double1: " + double1);
-		
-		ClickedNumbers.clear();
-		int equalsIndex = arr.indexOf("=");
-		
-		for (int i = plusIndex + 1; i < equalsIndex; i++) {
-			ClickedNumbers.add(arr.get(i));
-		}
-		double double2 = StringToDouble(String.join("", ClickedNumbers)); // Converts a joined array list of numbers after the plus sign into a string
-		System.out.println("double2:" + double2);
-		
-		String total = doubleToString(double1 + double2);
-		System.out.println(total);
-		return total;
 	}
-	public String subtraction(ArrayList<String> arr) {
-		ArrayList<String> ClickedNumbers = new ArrayList<String>();
-		int minusIndex = arr.indexOf("-");
-		System.out.println("minus index" + minusIndex);
-		
-		for (int i = 0; i < minusIndex; i++) {
-			ClickedNumbers.add(arr.get(i)); // Adds all the number strings before the plus sign to clicked numbers
-		}
-		double double1 = StringToDouble(String.join("", ClickedNumbers)); // Converts a joined array list of the numbers before the plus sign into a string
-		System.out.println("double1: " + double1);
-		
-		ClickedNumbers.clear();
-		int equalsIndex = arr.indexOf("=");
-		
-		for (int i = minusIndex + 1; i < equalsIndex; i++) {
-			ClickedNumbers.add(arr.get(i));
-		}
-		double double2 = StringToDouble(String.join("", ClickedNumbers)); // Converts a joined array list of numbers after the plus sign into a string
-		System.out.println("double2:" + double2);
-		
-		String difference = doubleToString(double1 - double2);
-		System.out.println("Difference: " + difference);
-		return difference;
-	}
+	System.out.println(Arrays.deepToString(textToDisplay));
+}
+public void draw() {
+	drawCalculator();
+	drawButtons();
+}
+
+public void drawCalculator() {
+	w = (width - totalMargin);
+	h = (height - totalMargin);
+	rectMode(CORNER);
+	fill(125, 125, 125);
+	rect(screenMargin, screenMargin, w, h);
+	fill(255);
+	rect(screenMargin + padding, screenMargin + padding, w - 2 * padding, h / 8);
+	drawScreen();
+}
+
+public void drawScreen() {
+	fill(0, 0, 0);
+	textAlign(RIGHT, CENTER);
+	text(String.join("", listName), 300, 80);
+}
+
+public void drawButtons()  {
+	w = (width - totalMargin);
+	h = (height - totalMargin);
+	buttons = new GridSquare[rows][cols];
+	float margin = 65;
+	float calcMarginX = 0;
+	float dimensions = 45;
+	float totalWidth = margin + dimensions * (cols - 1);
+	float idontevencareanymore = 130;
+
 	
-	public String multiplication(ArrayList<String> arr) {
-		ArrayList<String> ClickedNumbers = new ArrayList<String>();
-		int timesIndex = arr.indexOf("*");
-		System.out.println("Times index" + timesIndex);
-		
-		for (int i = 0; i < timesIndex; i++) {
-			ClickedNumbers.add(arr.get(i)); // Adds all the number strings before the plus sign to clicked numbers
+	for (int i = 0; i < rows; i++) {
+		for (int j = 0; j < textToDisplay[i].length; j++) {
+			calcMarginX = w - totalWidth;
+			calcMarginX /= 2;
+			calcMarginX += screenMargin;
+			buttons[i][j] = new GridSquare(i * margin + calcMarginX, j * margin + idontevencareanymore, dimensions, dimensions);
 		}
-		double double1 = StringToDouble(String.join("", ClickedNumbers)); // Converts a joined array list of the numbers before the plus sign into a string
-		System.out.println("double1: " + double1);
-		
-		ClickedNumbers.clear();
-		int equalsIndex = arr.indexOf("=");
-		
-		for (int i = timesIndex + 1; i < equalsIndex; i++) {
-			ClickedNumbers.add(arr.get(i));
+	}
+	for (int i = 0; i < rows; i++) {
+		for (int j = 0; j < textToDisplay[i].length; j++) {
+			buttons[i][j].displayText(textToDisplay, i, j);
 		}
-		double double2 = StringToDouble(String.join("", ClickedNumbers)); // Converts a joined array list of numbers after the plus sign into a string
-		System.out.println("double2:" + double2);
-		
-		String product = doubleToString(double1 * double2);
-		System.out.println("Product: " + product);
-		return product;
 	}
 	
-	public String division(ArrayList<String> arr) {
-		ArrayList<String> ClickedNumbers = new ArrayList<String>();
-		int divideIndex = arr.indexOf("/");
-		System.out.println("divide index" + divideIndex);
-		
-		for (int i = 0; i < divideIndex; i++) {
-			ClickedNumbers.add(arr.get(i)); // Adds all the number strings before the plus sign to clicked numbers
-		}
-		double double1 = StringToDouble(String.join("", ClickedNumbers)); // Converts a joined array list of the numbers before the plus sign into a string
-		System.out.println("double1: " + double1);
-		
-		ClickedNumbers.clear();
-		int equalsIndex = arr.indexOf("=");
-		
-		for (int i = divideIndex + 1; i < equalsIndex; i++) {
-			ClickedNumbers.add(arr.get(i));
-		}
-		double double2 = StringToDouble(String.join("", ClickedNumbers)); // Converts a joined array list of numbers after the plus sign into a string
-		System.out.println("double2:" + double2);
-		
-		String quotient = doubleToString(double1 / double2);
-		System.out.println("Quotient: " + quotient);
-		return quotient;
-	}
+}
+
+public String doubleToString(double dble) {
+return String.valueOf(dble);
+}
+
+public double StringToDouble(String string) {
+return Double.parseDouble(string);
+}
+
+public String addition(ArrayList<String> arr) {
 	
-	public String moduloOperation(ArrayList<String> arr) {
-		ArrayList<String> ClickedNumbers = new ArrayList<String>();
-		int modulusIndex = arr.indexOf("%");
-		System.out.println("Modulus index" + modulusIndex);
-		
-		for (int i = 0; i < modulusIndex; i++) {
-			ClickedNumbers.add(arr.get(i)); // Adds all the number strings before the plus sign to clicked numbers
-		}
-		double double1 = StringToDouble(String.join("", ClickedNumbers)); // Converts a joined array list of the numbers before the plus sign into a string
-		System.out.println("double1: " + double1);
-		
-		ClickedNumbers.clear();
-		int equalsIndex = arr.indexOf("=");
-		
-		for (int i = modulusIndex + 1; i < equalsIndex; i++) {
-			ClickedNumbers.add(arr.get(i));
-		}
-		double double2 = StringToDouble(String.join("", ClickedNumbers)); // Converts a joined array list of numbers after the plus sign into a string
-		System.out.println("double2:" + double2);
-		
-		String modulusResult = doubleToString(double1 % double2);
-		System.out.println("Modulus Result " + modulusResult);
-		return modulusResult;
+	ArrayList<String> ClickedNumbers = new ArrayList<String>();
+	int plusIndex = arr.indexOf("+");
+	System.out.println(plusIndex);
+	for (int i = 0; i < plusIndex; i++) {
+		ClickedNumbers.add(arr.get(i)); // Adds all the number strings before the plus sign to clicked numbers
 	}
+	double double1 = StringToDouble(String.join("", ClickedNumbers)); // Converts a joined array list of the numbers before the plus sign into a string
+	System.out.println("double1: " + double1);
+	
+	ClickedNumbers.clear();
+	int equalsIndex = arr.indexOf("=");
+	
+	for (int i = plusIndex + 1; i < equalsIndex; i++) {
+		ClickedNumbers.add(arr.get(i));
+	}
+	double double2 = StringToDouble(String.join("", ClickedNumbers)); // Converts a joined array list of numbers after the plus sign into a string
+	System.out.println("double2:" + double2);
+	
+	String total = doubleToString(double1 + double2);
+	System.out.println(total);
+	return total;
+}
+public String subtraction(ArrayList<String> arr) {
+	ArrayList<String> ClickedNumbers = new ArrayList<String>();
+	int minusIndex = arr.indexOf("-");
+	System.out.println("minus index" + minusIndex);
+	
+	for (int i = 0; i < minusIndex; i++) {
+		ClickedNumbers.add(arr.get(i)); // Adds all the number strings before the plus sign to clicked numbers
+	}
+	double double1 = StringToDouble(String.join("", ClickedNumbers)); // Converts a joined array list of the numbers before the plus sign into a string
+	System.out.println("double1: " + double1);
+	
+	ClickedNumbers.clear();
+	int equalsIndex = arr.indexOf("=");
+	
+	for (int i = minusIndex + 1; i < equalsIndex; i++) {
+		ClickedNumbers.add(arr.get(i));
+	}
+	double double2 = StringToDouble(String.join("", ClickedNumbers)); // Converts a joined array list of numbers after the plus sign into a string
+	System.out.println("double2:" + double2);
+	
+	String difference = doubleToString(double1 - double2);
+	System.out.println("Difference: " + difference);
+	return difference;
+}
+
+public String multiplication(ArrayList<String> arr) {
+	ArrayList<String> ClickedNumbers = new ArrayList<String>();
+	int timesIndex = arr.indexOf("*");
+	System.out.println("Times index" + timesIndex);
+	
+	for (int i = 0; i < timesIndex; i++) {
+		ClickedNumbers.add(arr.get(i)); // Adds all the number strings before the plus sign to clicked numbers
+	}
+	double double1 = StringToDouble(String.join("", ClickedNumbers)); // Converts a joined array list of the numbers before the plus sign into a string
+	System.out.println("double1: " + double1);
+	
+	ClickedNumbers.clear();
+	int equalsIndex = arr.indexOf("=");
+	
+	for (int i = timesIndex + 1; i < equalsIndex; i++) {
+		ClickedNumbers.add(arr.get(i));
+	}
+	double double2 = StringToDouble(String.join("", ClickedNumbers)); // Converts a joined array list of numbers after the plus sign into a string
+	System.out.println("double2:" + double2);
+	
+	String product = doubleToString(double1 * double2);
+	System.out.println("Product: " + product);
+	return product;
+}
+
+public String division(ArrayList<String> arr) {
+	ArrayList<String> ClickedNumbers = new ArrayList<String>();
+	int divideIndex = arr.indexOf("/");
+	System.out.println("divide index" + divideIndex);
+	
+	for (int i = 0; i < divideIndex; i++) {
+		ClickedNumbers.add(arr.get(i)); // Adds all the number strings before the plus sign to clicked numbers
+	}
+	double double1 = StringToDouble(String.join("", ClickedNumbers)); // Converts a joined array list of the numbers before the plus sign into a string
+	System.out.println("double1: " + double1);
+	
+	ClickedNumbers.clear();
+	int equalsIndex = arr.indexOf("=");
+	
+	for (int i = divideIndex + 1; i < equalsIndex; i++) {
+		ClickedNumbers.add(arr.get(i));
+	}
+	double double2 = StringToDouble(String.join("", ClickedNumbers)); // Converts a joined array list of numbers after the plus sign into a string
+	System.out.println("double2:" + double2);
+	
+	String quotient = doubleToString(double1 / double2);
+	System.out.println("Quotient: " + quotient);
+	return quotient;
+}
+
+public String moduloOperation(ArrayList<String> arr) {
+	ArrayList<String> ClickedNumbers = new ArrayList<String>();
+	int modulusIndex = arr.indexOf("%");
+	System.out.println("Modulus index" + modulusIndex);
+	
+	for (int i = 0; i < modulusIndex; i++) {
+		ClickedNumbers.add(arr.get(i)); // Adds all the number strings before the plus sign to clicked numbers
+	}
+	double double1 = StringToDouble(String.join("", ClickedNumbers)); // Converts a joined array list of the numbers before the plus sign into a string
+	System.out.println("double1: " + double1);
+	
+	ClickedNumbers.clear();
+	int equalsIndex = arr.indexOf("=");
+	
+	for (int i = modulusIndex + 1; i < equalsIndex; i++) {
+		ClickedNumbers.add(arr.get(i));
+	}
+	double double2 = StringToDouble(String.join("", ClickedNumbers)); // Converts a joined array list of numbers after the plus sign into a string
+	System.out.println("double2:" + double2);
+	
+	String modulusResult = doubleToString(double1 % double2);
+	System.out.println("Modulus Result " + modulusResult);
+	return modulusResult;
+}
 	
 	public class GridSquare{
 

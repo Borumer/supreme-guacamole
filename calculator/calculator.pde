@@ -227,7 +227,7 @@ public String moduloOperation(ArrayList<String> arr) {
         public float ws;
         public float hs;
         public String value;
-
+        public String result = "";
         
         public GridSquare(float tempX, float tempY, float tempW, float tempH)  {   
             x = tempX;
@@ -241,9 +241,13 @@ public String moduloOperation(ArrayList<String> arr) {
         }
         
         public void onClick(float clickedX, float clickedY)  { 
-            if (this.onHover(clickedX, clickedY)) {
+            if (result.equals("") && this.onHover(clickedX, clickedY)) {
             	listName.add(value);
             	System.out.println(listName.toString());
+            }
+            else if (!result.equals("") && this.onHover(clickedX, clickedY)) {
+              listName.clear();
+              listName.add(value);
             }
         }
         
@@ -262,11 +266,9 @@ public String moduloOperation(ArrayList<String> arr) {
 			value = text2Display[i][j];
 			text(value, x + squarePadding, y + squarePadding);
     	}
-        final int loopSize = listName.size();
 
 		public void getCalcFunctionality() {
 			String[] numberStr = {"1", "2", "3", "4", "5", "6", "7", "8", "9"};
-			String result = "";
 				for (int l = 0; l < numberStr.length; l++) { // Looping through numbers array
 					Boolean pressedEquals = listName.contains("=");
 					Boolean pressedNumber = listName.contains(numberStr[l]);

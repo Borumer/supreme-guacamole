@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Arrays;
-	
+
+public String result = "";
 float screenMargin = 40;
 float padding = 15;
 
@@ -227,7 +228,6 @@ public String moduloOperation(ArrayList<String> arr) {
         public float ws;
         public float hs;
         public String value;
-        public String result = "";
         
         public GridSquare(float tempX, float tempY, float tempW, float tempH)  {   
             x = tempX;
@@ -241,13 +241,15 @@ public String moduloOperation(ArrayList<String> arr) {
         }
         
         public void onClick(float clickedX, float clickedY)  { 
-            if (result.equals("") && this.onHover(clickedX, clickedY)) {
+            boolean isEmpty = result.length() == 0;
+            if (isEmpty && this.onHover(clickedX, clickedY)) {
             	listName.add(value);
-            	System.out.println(listName.toString());
+            	System.out.println("Mouse Button Input: " + listName.toString());
             }
-            else if (!result.equals("") && this.onHover(clickedX, clickedY)) {
-              listName.clear();
+            else if (!isEmpty && this.onHover(clickedX, clickedY) && listName.size() <= 1) {
+              listName.remove(0);
               listName.add(value);
+              result = "";
             }
         }
         
@@ -258,13 +260,13 @@ public String moduloOperation(ArrayList<String> arr) {
         }
         
         public void displayText(String[][] text2Display, int i, int j) {
-            float squarePadding = 20; // Space between each square
-			this.draw();
-			textSize(20);
-			fill(255, 255, 255);
-			textAlign(CENTER, CENTER);
-			value = text2Display[i][j];
-			text(value, x + squarePadding, y + squarePadding);
+          float squarePadding = 20; // Space between each square
+			    this.draw();
+			    textSize(20);
+			    fill(255, 255, 255);
+			    textAlign(CENTER, CENTER);
+			    value = text2Display[i][j];
+			    text(value, x + squarePadding, y + squarePadding);
     	}
 
 		public void getCalcFunctionality() {

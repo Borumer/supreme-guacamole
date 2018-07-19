@@ -4,7 +4,6 @@ import java.util.Arrays;
 public String result = "";
 float screenMargin = 40;
 float padding = 15;
-
 ArrayList<String> listName =  new ArrayList<String>();
 float w = 0;
 float h = 0;
@@ -91,6 +90,10 @@ public void drawButtons()  {
 
 public String doubleToString(double dble) {
 return String.valueOf(dble);
+}
+
+public float StringToFloat(String string) {
+  return Float.parseFloat(string);
 }
 
 public double StringToDouble(String string) {
@@ -220,6 +223,30 @@ public String moduloOperation(ArrayList<String> arr) {
   System.out.println("Modulus Result " + modulusResult);
   return modulusResult;
 }
+
+public String exponentOperation(ArrayList<String> arr) {
+    ArrayList<String> ClickedNumbers = new ArrayList<String>();
+    int carrotIndex = arr.indexOf("^");
+    
+    for (int i = 0; i < carrotIndex; i++) {
+    ClickedNumbers.add(arr.get(i)); // Adds all the number strings before the plus sign to clicked numbers
+  }
+  float double1 = StringToFloat(String.join("", ClickedNumbers)); // Converts a joined array list of the numbers before the plus sign into a string
+  System.out.println("double1: " + double1);
+  
+  ClickedNumbers.clear();
+  int equalsIndex = arr.indexOf("=");
+  
+  for (int i = carrotIndex + 1; i < equalsIndex; i++) {
+    ClickedNumbers.add(arr.get(i));
+  }
+  float double2 = StringToFloat(String.join("", ClickedNumbers)); // Converts a joined array list of numbers after the plus sign into a string
+  System.out.println("double2:" + double2);
+  
+  String powerResult = doubleToString(pow(double1, double2));
+  System.out.println("Power Result: " + powerResult);
+  return powerResult;
+}
   
   public class GridSquare{
 
@@ -299,6 +326,11 @@ public String moduloOperation(ArrayList<String> arr) {
                 System.out.println("Modulufying Numbers...");
                 listName.add(moduloOperation(listName));
                 result = moduloOperation(listName);
+              }
+              else if (listName.contains("^")) {
+                System.out.println("Powering numbers...");
+                listName.add(exponentOperation(listName));
+                result = exponentOperation(listName);
               }
               
             } 

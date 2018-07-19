@@ -1,4 +1,5 @@
 The calculator app is an app I made from processing java, finished in 3 days and first programmed on Eclipse. 
 
 7/19/2018
-The app consists of numbers
+The app consists of numbers, *, +, ^, %(modulus), -, =, and . (Working)
+I have yet to add 

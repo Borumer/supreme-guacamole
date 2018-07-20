@@ -88,15 +88,15 @@ public void drawButtons()  {
   
 }
 
-public String doubleToString(double dble) {
+public static String doubleToString(double dble) {
 return String.valueOf(dble);
 }
 
-public float StringToFloat(String string) {
+public static float StringToFloat(String string) {
   return Float.parseFloat(string);
 }
 
-public double StringToDouble(String string) {
+public static double StringToDouble(String string) {
 return Double.parseDouble(string);
 }
 

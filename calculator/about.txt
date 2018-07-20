@@ -2,4 +2,9 @@ The calculator app is an app I made from processing java, finished in 3 days and
 
 7/19/2018
 The app consists of numbers, *, +, ^, %(modulus), -, =, and . (Working)
-I have yet to add 
+I have yet to add +/-, √, trigonometry, %(percent)
+I also plan on making it easier, more efficient, and reduce the lrge amount of repeated code that there is already with the current method.
+Finishing touches will include 
+	making the colors and design more professional, higher quality,
+	mouse hover making the button display change in some way
+

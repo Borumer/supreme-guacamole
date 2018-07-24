@@ -11,7 +11,7 @@ const calculateSleepDebt = () => {
     console.log(`You should get some rest. Your sleep debt is ${sleepDebt} hours.`);
   }
   else {
-    sleepDebt /= -1;
+    sleepDebt = -sleepDebt;
     console.log(`You got ${sleepDebt} more hours of sleep than needed.`)
   }
 };

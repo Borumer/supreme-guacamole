@@ -3,7 +3,7 @@ let currentCard = "Heart";
 let flips = 1;
 while (currentCard !== "Spade") {
   console.log(currentCard);
-  const randomNumber = Math.round(Math.random() * 3);
+  const randomNumber = Math.round(Math.random() * 4);
   
   currentCard = cards[randomNumber];
 

@@ -6,28 +6,51 @@ const unnecessaryWords = ['extremely', 'literally', 'actually'];
 // Define arrays that are created from modifying above
 let storyWords = [];
 let betterStoryWords = [];
+let overusedWordIndexes = [];
 
 // Convert 'story' string to array
 storyWords = story.split(" ");
 
 // Take out unnecessary words that are in unnecessaryWords array from storyWords array
-// Take out every other overusedword occurence
 betterStoryWords = storyWords.filter((storyWord, index) => !unnecessaryWords.includes(storyWord));
 
+// Filter overused words into an array called overusedWordOccurences
+let overusedWordOccurrences = betterStoryWords.filter((storyWord, index) => {
+	const isOverusedWord = overusedWords.includes(storyWord);
+	if (isOverusedWord) {
+		// Push indexes of each element of overusedWordOccurences into another array
+		overusedWordIndexes.push(index);
+	}
+	return isOverusedWord;
+});
+console.log(overusedWordIndexes);
+
+// Take out every other index
+overusedWordOccurrences = overusedWordOccurrences.filter((overusedWord, index) => {
+	return index % 2;
+});
+
+overusedWordIndexes.filter((overusedWord, index) => overusedWordIndexes.splice(index, 1));
+
+console.log(overusedWordOccurrences);
+console.log(overusedWordIndexes);
+
 // Tells user how many times each overused word was used
-overusedWords.forEach(function(overusedWord, index, array) {
+overusedWords.forEach(function(overusedWord) {
 	let timesUsed = this.reduce((lastResult, currentValue) => {
 		return lastResult + (currentValue === overusedWord);
 	}, 0);
-	console.log(`You used '${overusedWord}' ${timesUsed} times. \n Removing '${overusedWord}' every other time it appears...`);
-	var index = this.indexOf(overusedWord);
-	if (index > -1 && index % 2 === 0) {
-		this.splice(index, 1);
-	}
+	console.log(`You used '${overusedWord}' ${timesUsed} times.`);
 }, betterStoryWords);
 
 // Counts number of sentences total
 let sentenceCount = betterStoryWords.reduce((lastResult, currentVal) => lastResult + (currentVal.includes(".") || currentVal.includes("!")), 0);
+
+// Put remaining words back into array
+for (let i = 0; i < overusedWordIndexes.length; i++) {
+	betterStoryWords.splice(overusedWordIndexes[i], 1);
+}
+
 console.log(`Sentence Count: ${sentenceCount}`);
 console.log(`Word Count: ${storyWords.length}\n`);
 

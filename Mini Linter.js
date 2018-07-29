@@ -48,7 +48,7 @@ let sentenceCount = betterStoryWords.reduce((lastResult, currentVal) => lastResu
 
 // Put remaining words back into array
 for (let i = 0; i < overusedWordIndexes.length; i++) {
-	betterStoryWords.splice(overusedWordIndexes[i], 1);
+	betterStoryWords.splice(overusedWordIndexes[i], 1, "[I WAS REMOVED]");
 }
 
 console.log(`Sentence Count: ${sentenceCount}`);

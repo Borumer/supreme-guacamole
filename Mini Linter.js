@@ -27,6 +27,7 @@ console.log(overusedWordIndexes);
 
 // Take out every other index
 overusedWordOccurrences = overusedWordOccurrences.filter((overusedWord, index) => {
+	overusedWord = overusedWord.toUpperCase();
 	return index % 2;
 });
 
@@ -48,7 +49,7 @@ let sentenceCount = betterStoryWords.reduce((lastResult, currentVal) => lastResu
 
 // Put remaining words back into array
 for (let i = 0; i < overusedWordIndexes.length; i++) {
-	betterStoryWords.splice(overusedWordIndexes[i], 1, "[I WAS REMOVED]");
+	betterStoryWords.splice(overusedWordIndexes[i] - i, 1);
 }
 
 console.log(`Sentence Count: ${sentenceCount}`);

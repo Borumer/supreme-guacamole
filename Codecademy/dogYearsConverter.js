@@ -1,5 +1,5 @@
 // Sets the constant age of a human
-const myAge = 8;
+const myAge = 13;
 // Value of the early years of a human
 let earlyYears = 2;
 // Sets the first 2 years of a human in dog years
@@ -16,4 +16,5 @@ const myAgeInDogYears = earlyYears + laterYears;
 const myName = "Varun".toLowerCase();
 
 // Prints the name and age in dog years of the user to the console
+console.log(`My age (in human years) is ${myAge}.`);
 console.log(`My name is ${myName}. I am ${myAgeInDogYears} years old in dog years.`);

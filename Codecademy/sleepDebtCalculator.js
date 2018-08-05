@@ -50,3 +50,4 @@ function getIdealSleepHours(idealHours) {
 }
 
 calculateSleepDebt();
+

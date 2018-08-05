@@ -1,5 +1,24 @@
-import java.util.ArrayList;
-import java.util.Arrays;
+import processing.core.*; 
+import processing.data.*; 
+import processing.event.*; 
+import processing.opengl.*; 
+
+import java.util.ArrayList; 
+import java.util.Arrays; 
+
+import java.util.HashMap; 
+import java.util.ArrayList; 
+import java.io.File; 
+import java.io.BufferedReader; 
+import java.io.PrintWriter; 
+import java.io.InputStream; 
+import java.io.OutputStream; 
+import java.io.IOException; 
+
+public class calculator extends PApplet {
+
+
+
 
 public String result = "";
 float screenMargin = 40;
@@ -88,15 +107,15 @@ public void drawButtons()  {
   
 }
 
-public static String doubleToString(double dble) {
+public String doubleToString(double dble) {
 return String.valueOf(dble);
 }
 
-public static float StringToFloat(String string) {
+public float StringToFloat(String string) {
   return Float.parseFloat(string);
 }
 
-public static double StringToDouble(String string) {
+public double StringToDouble(String string) {
 return Double.parseDouble(string);
 }
 
@@ -250,101 +269,101 @@ public String exponentOperation(ArrayList<String> arr) {
   
   public class GridSquare{
 
-    public float x;
-    public float y;
-    public float ws;
-    public float hs;
-    public String value;
-      
-    public GridSquare(float tempX, float tempY, float tempW, float tempH)  {   
-        x = tempX;
-        y = tempY;
-        ws = tempW;
-        hs = tempH; 
-    }
-    
-    public Boolean onHover(float clickedX, float clickedY) {
-      return clickedX > x && clickedX < x + ws && clickedY > y && clickedY < y + hs;
-    }
-    
-    public void onClick(float clickedX, float clickedY)  { 
-        boolean isEmpty = result.length() == 0;
-        if (isEmpty && this.onHover(clickedX, clickedY)) {
-          listName.add(value);
-          System.out.println("Mouse Button Input: " + listName.toString());
+        public float x;
+        public float y;
+        public float ws;
+        public float hs;
+        public String value;
+        
+        public GridSquare(float tempX, float tempY, float tempW, float tempH)  {   
+            x = tempX;
+            y = tempY;
+            ws = tempW;
+            hs = tempH; 
         }
-        else if (!isEmpty && this.onHover(clickedX, clickedY) && listName.size() <= 1) {
-          listName.remove(0);
-          listName.add(value);
-          result = "";
+        
+        public Boolean onHover(float clickedX, float clickedY) {
+          return clickedX > x && clickedX < x + ws && clickedY > y && clickedY < y + hs;
         }
-    }
-      
-    public void draw() {
-      fill(0, 30, 240);
-      rectMode(CORNER);
-      rect(x, y, ws, hs);
-    }
-    
-    public void displayText(String[][] text2Display, int i, int j) {
-      float squarePadding = 20; // Space between each square
-      this.draw();
-      textSize(20);
-      fill(255, 255, 255);
-      textAlign(CENTER, CENTER);
-      value = text2Display[i][j];
-      text(value, x + squarePadding, y + squarePadding);
-    }
+        
+        public void onClick(float clickedX, float clickedY)  { 
+            boolean isEmpty = result.length() == 0;
+            if (isEmpty && this.onHover(clickedX, clickedY)) {
+              listName.add(value);
+              System.out.println("Mouse Button Input: " + listName.toString());
+            }
+            else if (!isEmpty && this.onHover(clickedX, clickedY) && listName.size() <= 1) {
+              listName.remove(0);
+              listName.add(value);
+              result = "";
+            }
+        }
+        
+        public void draw() {
+          fill(0, 30, 240);
+          rectMode(CORNER);
+          rect(x, y, ws, hs);
+        }
+        
+        public void displayText(String[][] text2Display, int i, int j) {
+          float squarePadding = 20; // Space between each square
+          this.draw();
+          textSize(20);
+          fill(255, 255, 255);
+          textAlign(CENTER, CENTER);
+          value = text2Display[i][j];
+          text(value, x + squarePadding, y + squarePadding);
+        }
 
-    public void getCalcFunctionality() {
-      String[] numberStr = {"1", "2", "3", "4", "5", "6", "7", "8", "9"};
-      for (int l = 0; l < numberStr.length; l++) { // Looping through numbers array
-        Boolean pressedEquals = listName.contains("=");
-        Boolean pressedNumber = listName.contains(numberStr[l]);
-        if (pressedNumber && pressedEquals) {
-          if (listName.contains("+")) {
-            System.out.println("Adding Numbers...");
-            listName.add(addition(listName));
-            result = addition(listName);
+        public void getCalcFunctionality() {
+          String[] numberStr = {"1", "2", "3", "4", "5", "6", "7", "8", "9"};
+          for (int l = 0; l < numberStr.length; l++) { // Looping through numbers array
+            Boolean pressedEquals = listName.contains("=");
+            Boolean pressedNumber = listName.contains(numberStr[l]);
+            if (pressedNumber && pressedEquals) {
+              if (listName.contains("+")) {
+                System.out.println("Adding Numbers...");
+                listName.add(addition(listName));
+                result = addition(listName);
+              }
+              else if (listName.contains("-")) {
+                System.out.println("Subtracting Numbers");
+                listName.add(subtraction(listName));
+                result = subtraction(listName);
+              }
+              else if (listName.contains("*")) {
+                System.out.println("Multiplying Numbers...");
+                listName.add(multiplication(listName));
+                result = multiplication(listName);
+              }
+              else if (listName.contains("/")) {
+                System.out.println("Dividing Numbers...");
+                listName.add(division(listName));
+                result = division(listName);
+              }
+              else if (listName.contains("%")) {
+                System.out.println("Modulufying Numbers...");
+                listName.add(moduloOperation(listName));
+                result = moduloOperation(listName);
+              }
+              else if (listName.contains("^")) {
+                System.out.println("Powering numbers...");
+                listName.add(exponentOperation(listName));
+                result = exponentOperation(listName);
+              }
+              
+            } 
           }
-          else if (listName.contains("-")) {
-            System.out.println("Subtracting Numbers");
-            listName.add(subtraction(listName));
-            result = subtraction(listName);
-          }
-          else if (listName.contains("*")) {
-            System.out.println("Multiplying Numbers...");
-            listName.add(multiplication(listName));
-            result = multiplication(listName);
-          }
-          else if (listName.contains("/")) {
-            System.out.println("Dividing Numbers...");
-            listName.add(division(listName));
-            result = division(listName);
-          }
-          else if (listName.contains("%")) {
-            System.out.println("Modulufying Numbers...");
-            listName.add(moduloOperation(listName));
-            result = moduloOperation(listName);
-          }
-          else if (listName.contains("^")) {
-            System.out.println("Powering numbers...");
-            listName.add(exponentOperation(listName));
-            result = exponentOperation(listName);
-          }
-          
-        } 
-      }
-      if (listName.contains("C")) {
-        listName.clear(); // Clears the "Screen" when C is clicked by clearing the array
-      }
-      else if(listName.contains("=")) {
-        listName.clear(); 
-        listName.add(result);
-        drawScreen();
+        if (listName.contains("C")) {
+          listName.clear(); // Clears the "Screen" when C is clicked by clearing the array
+        }
+        else if(listName.contains("=")) {
+          listName.clear(); 
+          listName.add(result);
+          drawScreen();
+        }
       }
     }
-  }
 
   public void mouseReleased() {
     for (int i = 0; i < rows; i++) {
@@ -354,3 +373,12 @@ public String exponentOperation(ArrayList<String> arr) {
       }
     }
   }
+  static public void main(String[] passedArgs) {
+    String[] appletArgs = new String[] { "calculator" };
+    if (passedArgs != null) {
+      PApplet.main(concat(appletArgs, passedArgs));
+    } else {
+      PApplet.main(appletArgs);
+    }
+  }
+}

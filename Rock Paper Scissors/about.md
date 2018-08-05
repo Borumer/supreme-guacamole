@@ -3,6 +3,7 @@
 The classic game of rock paper scissors is a game of 'luck' used for settling disputes and sometimes for fun. This folder contains rock paper scissors programmed through the console in both Java(Scanner, Random) and JavaScript(node.js)
 
 ![Diagram of rock paper scissors](https://upload.wikimedia.org/wikipedia/commons/6/67/Rock-paper-scissors.svg)
+
 By Enzoklop - Own work, CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=27958688
 
 ## RockPaperScissors.java

@@ -23,7 +23,6 @@ let overusedWordOccurrences = betterStoryWords.filter((storyWord, index) => {
 	}
 	return isOverusedWord;
 });
-console.log(overusedWordIndexes);
 
 // Take out every other index
 overusedWordOccurrences = overusedWordOccurrences.filter((overusedWord, index) => {
@@ -32,9 +31,6 @@ overusedWordOccurrences = overusedWordOccurrences.filter((overusedWord, index) =
 });
 
 overusedWordIndexes.filter((overusedWord, index) => overusedWordIndexes.splice(index, 1));
-
-console.log(overusedWordOccurrences);
-console.log(overusedWordIndexes);
 
 // Tells user how many times each overused word was used
 overusedWords.forEach(function(overusedWord) {
@@ -51,8 +47,49 @@ let sentenceCount = betterStoryWords.reduce((lastResult, currentVal) => lastResu
 for (let i = 0; i < overusedWordIndexes.length; i++) {
 	betterStoryWords.splice(overusedWordIndexes[i] - i, 1);
 }
+let minimizedStoryWords = betterStoryWords;
+// Finds most frequently used word
+function findMostUsedWord(storyArr) {
+	let words = []; // Stores all the different words
+	let counts = []; // Stores the counts of each word in the story with the index corresponding to each word in words
+	const punctuation = ['.', ',', '!', '?', '"']; // All punctuation that is removed so the words are counted accurately
 
+	for (let i = 0; i < storyArr.length; i++) {
+		let word = storyArr[i];
+		for (let j = 0; j < punctuation.length; j++) {
+			for (let k = 0; k < word.length; k++) {
+				// If any of the characters in each string is a punctuation
+				if(word[k] === punctuation[j]) {
+					//console.log("This word is being popped: " + word); // Print the original word (with the punctuation)
+					word = word.slice(0, k) + word.slice(k + 1); // Remove this punctuation by extracting the characterss before this + the characters after it
+					//console.log(word); // Print the new word without the punctuation
+				}
+			}
+		}
+		word = word.toLowerCase();
+		if (!words.includes(word)) {
+			words.push(word);	
+			counts.push(1);
+		}
+		else {
+			counts[words.indexOf(word)]++;
+		}
+	}
+
+	//console.log("Counts: " + counts);
+	console.log(`Different Word Count: ${words.length}`);
+	//console.log(`All Words: ${words}`); All the different words            
+
+	const highestCount = Math.max.apply(null, counts); // Find the highest number in counts
+	// Use the index of the highest number as the index to access the most frequent word
+	const mostFrequentWord = words[counts.indexOf(highestCount)]; 
+	
+	return mostFrequentWord;
+}
+
+console.log(`The most used word is ${findMostUsedWord(minimizedStoryWords)}`);
+const lintedStory = minimizedStoryWords.join(" ");
 console.log(`Sentence Count: ${sentenceCount}`);
-console.log(`Word Count: ${storyWords.length}\n`);
+console.log(`Word Count: ${minimizedStoryWords.length}\n`);
 
-console.log(`Linted Story: \n  ${betterStoryWords.join(" ")}`);
+console.log(`Linted Story: \n  ${lintedStory}`);

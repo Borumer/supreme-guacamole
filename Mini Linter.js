@@ -66,30 +66,29 @@ function findMostUsedWord(storyArr) {
 				}
 			}
 		}
-		word = word.toLowerCase();
+		word = word.toLowerCase(); // Makes the words lower case to ignore capitalization
 		if (!words.includes(word)) {
 			words.push(word);	
 			counts.push(1);
 		}
 		else {
-			counts[words.indexOf(word)]++;
+			counts[words.indexOf(word)]++; // Increment for every time
 		}
 	}
 
 	//console.log("Counts: " + counts);
-	console.log(`Different Word Count: ${words.length}`);
+	console.log(`Different Word Count: ${words.length} different words`);
 	//console.log(`All Words: ${words}`); All the different words            
 
 	const highestCount = Math.max.apply(null, counts); // Find the highest number in counts
-	// Use the index of the highest number as the index to access the most frequent word
-	const mostFrequentWord = words[counts.indexOf(highestCount)]; 
-	
+	const mostFrequentWord = words[counts.indexOf(highestCount)]; // Use the index of the highest number as the index to access the most frequent word
+
 	return mostFrequentWord;
 }
 
-console.log(`The most used word is ${findMostUsedWord(minimizedStoryWords)}`);
+console.log(`The most used word is '${findMostUsedWord(minimizedStoryWords)}'`);
 const lintedStory = minimizedStoryWords.join(" ");
-console.log(`Sentence Count: ${sentenceCount}`);
-console.log(`Word Count: ${minimizedStoryWords.length}\n`);
+console.log(`Sentence Count: ${sentenceCount} sentences`);
+console.log(`Word Count: ${minimizedStoryWords.length} words`);
 
-console.log(`Linted Story: \n  ${lintedStory}`);
+console.log(`\nLinted Story: \n  ${lintedStory}`);

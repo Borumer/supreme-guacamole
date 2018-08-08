@@ -1,0 +1,1 @@
+Geometric Calculator is a calculator app programmed in java using the Scanner library that helps the user find the area of certain 2D shapes.

@@ -29,7 +29,7 @@ public class Operation {
       ClickedNumbers.add(userInput.get(i));
     }
     double double2 = calculator.StringToFloat(String.join("", ClickedNumbers)); // Converts a joined array list of numbers after the sign into a string
-    System.out.println("double2:" + double2);
+    System.out.println("double2: " + double2);
   
     String operResult = calculator.doubleToString(double1 - double2);
     System.out.println("Operation Result: " + operResult);

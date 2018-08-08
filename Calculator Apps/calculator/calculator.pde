@@ -202,7 +202,7 @@ public String division(ArrayList<String> arr) {
 public String moduloOperation(ArrayList<String> arr) {
   ArrayList<String> ClickedNumbers = new ArrayList<String>();
   int modulusIndex = arr.indexOf("%");
-  System.out.println("Modulus index" + modulusIndex);
+  System.out.println("Modulus Index" + modulusIndex);
   
   for (int i = 0; i < modulusIndex; i++) {
     ClickedNumbers.add(arr.get(i)); // Adds all the number strings before the plus sign to clicked numbers

@@ -299,8 +299,8 @@ public String exponentOperation(ArrayList<String> arr) {
     public void getCalcFunctionality() {
       String[] numberStr = {"1", "2", "3", "4", "5", "6", "7", "8", "9"};
       Boolean pressedEquals = listName.contains("=");
-      for (int l = 0; l < numberStr.length; l++) { // Looping through numbers array
-        Boolean pressedNumber = listName.contains(numberStr[l]);
+      for(String number : numberStr) {
+        Boolean pressedNumber = listName.contains(number);
         if (pressedNumber && pressedEquals) {
           if (listName.contains("+")) {
             System.out.println("Adding Numbers...");
@@ -347,7 +347,7 @@ public String exponentOperation(ArrayList<String> arr) {
 
   public void mouseReleased() {
     for (int i = 0; i < rows; i++) {
-      for (int j = 0; j < textToDisplay[i].length; j++) {
+      for (int j = 0; j < cols; j++) {
         buttons[i][j].onClick(mouseX, mouseY);
         buttons[i][j].getCalcFunctionality(); 
       }

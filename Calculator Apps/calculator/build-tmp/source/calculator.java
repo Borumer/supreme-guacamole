@@ -317,8 +317,8 @@ public String exponentOperation(ArrayList<String> arr) {
 
     public void getCalcFunctionality() {
       String[] numberStr = {"1", "2", "3", "4", "5", "6", "7", "8", "9"};
+      Boolean pressedEquals = listName.contains("=");
       for (int l = 0; l < numberStr.length; l++) { // Looping through numbers array
-        Boolean pressedEquals = listName.contains("=");
         Boolean pressedNumber = listName.contains(numberStr[l]);
         if (pressedNumber && pressedEquals) {
           if (listName.contains("+")) {
@@ -351,7 +351,6 @@ public String exponentOperation(ArrayList<String> arr) {
             listName.add(exponentOperation(listName));
             result = exponentOperation(listName);
           }
-          
         } 
       }
       if (listName.contains("C")) {

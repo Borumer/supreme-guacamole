@@ -1,32 +1,32 @@
 import java.util.ArrayList;
 
 public class Operation {
-  ArrayList<String> arr = new ArrayList<String>();
+  ArrayList<String> userInput = new ArrayList<String>();
   String operation;
-  String operSymbol;
+  String operationSymbol;
   
-	public Operation(ArrayList<String> arr, String operation, String operSymbol) {
-    this.arr = arr;
-    this.operation = operation;
-    this.operSymbol = operSymbol;
+	public Operation(ArrayList<String> arr, String op, String operSymbol) {
+    userInput = arr;
+    operation = op;
+    operationSymbol = operSymbol;
   }
   
   String doOperation() {
     ArrayList<String> ClickedNumbers = new ArrayList<String>();
-    int operationIndex = arr.indexOf(this.operSymbol);
+    int operationIndex = userInput.indexOf(operationSymbol);
     System.out.println(operation + " index: " + operationIndex);
   
     for (int i = 0; i < operationIndex; i++) {
-      ClickedNumbers.add(arr.get(i)); // Adds all the number strings before the sign to clicked numbers
+      ClickedNumbers.add(userInput.get(i)); // Adds all the number strings before the sign to clicked numbers
     }
     double double1 = calculator.StringToDouble(String.join("", ClickedNumbers)); // Converts a joined array list of the numbers before the plus sign into a string
     System.out.println("double1: " + double1);
   
     ClickedNumbers.clear();
-    int equalsIndex = arr.indexOf("=");
+    int equalsIndex = userInput.indexOf("=");
   
     for (int i = operationIndex + 1; i < equalsIndex; i++) {
-      ClickedNumbers.add(arr.get(i));
+      ClickedNumbers.add(userInput.get(i));
     }
     double double2 = calculator.StringToFloat(String.join("", ClickedNumbers)); // Converts a joined array list of numbers after the sign into a string
     System.out.println("double2:" + double2);

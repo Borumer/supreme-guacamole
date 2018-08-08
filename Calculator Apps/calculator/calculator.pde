@@ -104,7 +104,7 @@ public String addition(ArrayList<String> arr) {
   
   ArrayList<String> ClickedNumbers = new ArrayList<String>();
   int plusIndex = arr.indexOf("+");
-  System.out.println(plusIndex);
+  System.out.println("plus index: " + plusIndex);
   for (int i = 0; i < plusIndex; i++) {
     ClickedNumbers.add(arr.get(i)); // Adds all the number strings before the plus sign to clicked numbers
   }
@@ -127,7 +127,7 @@ public String addition(ArrayList<String> arr) {
 public String subtraction(ArrayList<String> arr) {
   ArrayList<String> ClickedNumbers = new ArrayList<String>();
   int minusIndex = arr.indexOf("-");
-  System.out.println("minus index" + minusIndex);
+  System.out.println("Minus index: " + minusIndex);
   
   for (int i = 0; i < minusIndex; i++) {
     ClickedNumbers.add(arr.get(i)); // Adds all the number strings before the plus sign to clicked numbers
@@ -152,7 +152,7 @@ public String subtraction(ArrayList<String> arr) {
 public String multiplication(ArrayList<String> arr) {
   ArrayList<String> ClickedNumbers = new ArrayList<String>();
   int timesIndex = arr.indexOf("*");
-  System.out.println("Times index" + timesIndex);
+  System.out.println("Times index: " + timesIndex);
   
   for (int i = 0; i < timesIndex; i++) {
     ClickedNumbers.add(arr.get(i)); // Adds all the number strings before the plus sign to clicked numbers
@@ -177,7 +177,7 @@ public String multiplication(ArrayList<String> arr) {
 public String division(ArrayList<String> arr) {
   ArrayList<String> ClickedNumbers = new ArrayList<String>();
   int divideIndex = arr.indexOf("/");
-  System.out.println("divide index" + divideIndex);
+  System.out.println("Divide index" + divideIndex);
   
   for (int i = 0; i < divideIndex; i++) {
     ClickedNumbers.add(arr.get(i)); // Adds all the number strings before the plus sign to clicked numbers
@@ -255,6 +255,7 @@ public String exponentOperation(ArrayList<String> arr) {
     public float ws;
     public float hs;
     public String value;
+    public String processStatement = "";
       
     public GridSquare(float tempX, float tempY, float tempW, float tempH)  {   
         x = tempX;
@@ -299,41 +300,43 @@ public String exponentOperation(ArrayList<String> arr) {
     public void getCalcFunctionality() {
       String[] numberStr = {"1", "2", "3", "4", "5", "6", "7", "8", "9"};
       Boolean pressedEquals = listName.contains("=");
+
       for(String number : numberStr) {
         Boolean pressedNumber = listName.contains(number);
         if (pressedNumber && pressedEquals) {
           if (listName.contains("+")) {
-            System.out.println("Adding Numbers...");
+            processStatement = "Adding Numbers...";
             listName.add(addition(listName));
             result = addition(listName);
           }
           else if (listName.contains("-")) {
-            System.out.println("Subtracting Numbers");
+            processStatement = "Subtracting Numbers...";
             listName.add(subtraction(listName));
             result = subtraction(listName);
           }
           else if (listName.contains("*")) {
-            System.out.println("Multiplying Numbers...");
+            processStatement = "Multiplying Numbers...";
             listName.add(multiplication(listName));
             result = multiplication(listName);
           }
           else if (listName.contains("/")) {
-            System.out.println("Dividing Numbers...");
+            processStatement = "Dividing Numbers...";
             listName.add(division(listName));
             result = division(listName);
           }
           else if (listName.contains("%")) {
-            System.out.println("Modulufying Numbers...");
+            processStatement = "Modulufying Numbers...";
             listName.add(moduloOperation(listName));
             result = moduloOperation(listName);
           }
           else if (listName.contains("^")) {
-            System.out.println("Powering numbers...");
+            processStatement = "Powering numbers...";
             listName.add(exponentOperation(listName));
             result = exponentOperation(listName);
           }
         } 
       }
+
       if (listName.contains("C")) {
         listName.clear(); // Clears the "Screen" when C is clicked by clearing the array
       }
@@ -342,6 +345,7 @@ public String exponentOperation(ArrayList<String> arr) {
         listName.add(result);
         drawScreen();
       }
+      if (processStatement != "") System.out.println(processStatement);
     }
   }
 

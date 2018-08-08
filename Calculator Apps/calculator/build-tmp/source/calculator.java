@@ -108,7 +108,7 @@ public void drawButtons()  {
 }
 
 public static String doubleToString(double dble) {
-return String.valueOf(dble);
+  return String.valueOf(dble);
 }
 
 public static float StringToFloat(String string) {
@@ -221,7 +221,7 @@ public String division(ArrayList<String> arr) {
 public String moduloOperation(ArrayList<String> arr) {
   ArrayList<String> ClickedNumbers = new ArrayList<String>();
   int modulusIndex = arr.indexOf("%");
-  System.out.println("Modulus index" + modulusIndex);
+  System.out.println("Modulus Index" + modulusIndex);
   
   for (int i = 0; i < modulusIndex; i++) {
     ClickedNumbers.add(arr.get(i)); // Adds all the number strings before the plus sign to clicked numbers
@@ -244,10 +244,10 @@ public String moduloOperation(ArrayList<String> arr) {
 }
 
 public String exponentOperation(ArrayList<String> arr) {
-    ArrayList<String> ClickedNumbers = new ArrayList<String>();
-    int carrotIndex = arr.indexOf("^");
+  ArrayList<String> ClickedNumbers = new ArrayList<String>();
+  int carrotIndex = arr.indexOf("^");
     
-    for (int i = 0; i < carrotIndex; i++) {
+  for (int i = 0; i < carrotIndex; i++) {
     ClickedNumbers.add(arr.get(i)); // Adds all the number strings before the plus sign to clicked numbers
   }
   float double1 = StringToFloat(String.join("", ClickedNumbers)); // Converts a joined array list of the numbers before the plus sign into a string

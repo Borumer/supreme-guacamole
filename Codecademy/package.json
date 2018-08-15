@@ -1,0 +1,19 @@
+{
+  "name": "module-transpilation",
+  "version": "1.0.0",
+  "description": "A folder to contain all node programs using modern ES6 syntax",
+  "main": "KelvinWeather.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "babel src -d lib"
+  },
+  "author": "Varun",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0"
+  }
+}

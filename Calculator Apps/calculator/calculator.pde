@@ -97,11 +97,10 @@ public static float StringToFloat(String string) {
 }
 
 public static double StringToDouble(String string) {
-return Double.parseDouble(string);
+  return Double.parseDouble(string);
 }
 
 public String addition(ArrayList<String> arr) {
-  
   ArrayList<String> ClickedNumbers = new ArrayList<String>();
   int plusIndex = arr.indexOf("+");
   System.out.println("plus index: " + plusIndex);
@@ -166,7 +165,7 @@ public String multiplication(ArrayList<String> arr) {
   for (int i = timesIndex + 1; i < equalsIndex; i++) {
     ClickedNumbers.add(arr.get(i));
   }
-  double double2 = StringToDouble(String.join("", ClickedNumbers)); // Converts a joined array list of numbers after the plus sign into a string
+  double double2 = StringToFloat(String.join("", ClickedNumbers)); // Converts a joined array list of numbers after the plus sign into a string
   System.out.println("double2:" + double2);
   
   String product = doubleToString(double1 * double2);

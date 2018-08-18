@@ -42,6 +42,7 @@ public void setup() {
 public void draw() {
   drawCalculator();
   drawButtons();
+  Operation add = new Operation(listName, "plus", "+")
 }
 
 public void drawCalculator() {

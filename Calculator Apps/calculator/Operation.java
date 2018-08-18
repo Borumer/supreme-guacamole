@@ -11,7 +11,7 @@ public class Operation {
     operationSymbol = operSymbol;
   }
   
-  String doOperation() {
+  String calculate() {
     ArrayList<String> ClickedNumbers = new ArrayList<String>();
     int operationIndex = userInput.indexOf(operationSymbol);
     System.out.println(operation + " index: " + operationIndex);
@@ -31,30 +31,26 @@ public class Operation {
     double double2 = calculator.StringToFloat(String.join("", ClickedNumbers)); // Converts a joined array list of numbers after the sign into a string
     System.out.println("double2: " + double2);
 
-    Double operResult;
-    switch (operationSymbol) {
-      case "+":
-        operResult = double1 + double2;
-        break;
-      case "-":
-        operResult = double1 - double2;
-        break;
-      case "*":
-        operResult = double1 * double2;
-        break;
-      case "/":
-        operResult = double1 / double2;
-        break;
-      case "%":
-        operResult = double1 % double2;
-        break;
-      default: 
-        operResult = 0.0;
-        break;
-    }
-
+    Double operResult = this.doOperation(double1, double2);
     String operationResult = calculator.doubleToString(operResult);
     System.out.println("Operation Result: " + operationResult);
     return operationResult;
+  }
+
+  double doOperation(double double1, double double2) {
+    switch (operationSymbol) {
+      case "+":
+        return double1 + double2;
+      case "-":
+        return double1 - double2;
+      case "*":
+        return double1 * double2;
+      case "/":
+        return double1 / double2;
+      case "%":
+        return double1 % double2;
+      default: 
+        return 0.0;
+    }
   }
 }

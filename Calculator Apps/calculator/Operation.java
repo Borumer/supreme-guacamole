@@ -24,7 +24,7 @@ public class Operation {
       case "%":
         return double1 % double2;
       case "^":
-        return double1 ^ double2;
+        return Math.pow(double1, double2);
       default: 
         return 0.0;
     }

@@ -30,7 +30,7 @@ Operation subtraction = new Operation(listName, "Subtract", "-");
 Operation multiplication = new Operation(listName, "Multiply", "*");
 Operation division = new Operation(listName, "Divide", "/");
 Operation modulus = new Operation(listName,  "Modulo", "%");
-Operation exponential = new Operation(listName, "Expound", "^")
+Operation exponential = new Operation(listName, "Expound", "^");
 
 public void settings() {
   size(400, 500);
@@ -107,32 +107,8 @@ public static float StringToFloat(String string) {
 public static double StringToDouble(String string) {
   return Double.parseDouble(string);
 }
-
-public String exponentOperation(ArrayList<String> arr) {
-  ArrayList<String> ClickedNumbers = new ArrayList<String>();
-  int carrotIndex = arr.indexOf("^");
-    
-  for (int i = 0; i < carrotIndex; i++) {
-    ClickedNumbers.add(arr.get(i)); // Adds all the number strings before the plus sign to clicked numbers
-  }
-  float double1 = StringToFloat(String.join("", ClickedNumbers)); // Converts a joined array list of the numbers before the plus sign into a string
-  System.out.println("double1: " + double1);
   
-  ClickedNumbers.clear();
-  int equalsIndex = arr.indexOf("=");
-  
-  for (int i = carrotIndex + 1; i < equalsIndex; i++) {
-    ClickedNumbers.add(arr.get(i));
-  }
-  float double2 = StringToFloat(String.join("", ClickedNumbers)); // Converts a joined array list of numbers after the plus sign into a string
-  System.out.println("double2:" + double2);
-  
-  String powerResult = doubleToString(pow(double1, double2));
-  System.out.println("Power Result: " + powerResult);
-  return powerResult;
-}
-  
-  public class GridSquare{
+public class GridSquare{
 
     public float x;
     public float y;
@@ -233,7 +209,7 @@ public String exponentOperation(ArrayList<String> arr) {
     }
   }
 
-  public void mouseReleased() {
+public void mouseReleased() {
     for (int i = 0; i < rows; i++) {
       for (int j = 0; j < cols; j++) {
         buttons[i][j].onClick(mouseX, mouseY);

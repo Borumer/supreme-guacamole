@@ -4,7 +4,6 @@ public class GeometricCalculator {
 
  public static void main(String[] args) {
   Scanner userInput = new Scanner(System.in); 
-  CallbackImpl callback = new CallbackImpl();
   int width;
   int height;
   int area;
@@ -55,7 +54,7 @@ public class GeometricCalculator {
     userInput.nextLine(); // Skips this because it is after nextInt
     continueChoice = userInput.nextLine(); // Inputs users 'yes' or 'no' answer
   }
-   while (continueChoice.equals("Yes"));
+   while (continueChoice.equalsIgnoreCase("Yes"));
   if(continueChoice != "Yes") {
    userInput.close();
    System.exit(0);

@@ -106,104 +106,6 @@ public static double StringToDouble(String string) {
   return Double.parseDouble(string);
 }
 
-public String addition(ArrayList<String> arr) {
-  ArrayList<String> ClickedNumbers = new ArrayList<String>();
-  int plusIndex = arr.indexOf("+");
-  System.out.println("plus index: " + plusIndex);
-  for (int i = 0; i < plusIndex; i++) {
-    ClickedNumbers.add(arr.get(i)); // Adds all the number strings before the plus sign to clicked numbers
-  }
-  double double1 = StringToDouble(String.join("", ClickedNumbers)); // Converts a joined array list of the numbers before the plus sign into a string
-  System.out.println("double1: " + double1);
-  
-  ClickedNumbers.clear();
-  int equalsIndex = arr.indexOf("=");
-  
-  for (int i = plusIndex + 1; i < equalsIndex; i++) {
-    ClickedNumbers.add(arr.get(i));
-  }
-  double double2 = StringToDouble(String.join("", ClickedNumbers)); // Converts a joined array list of numbers after the plus sign into a string
-  System.out.println("double2:" + double2);
-  
-  String total = doubleToString(double1 + double2);
-  System.out.println(total);
-  return total;
-}
-public String subtraction(ArrayList<String> arr) {
-  ArrayList<String> ClickedNumbers = new ArrayList<String>();
-  int minusIndex = arr.indexOf("-");
-  System.out.println("Minus index: " + minusIndex);
-  
-  for (int i = 0; i < minusIndex; i++) {
-    ClickedNumbers.add(arr.get(i)); // Adds all the number strings before the plus sign to clicked numbers
-  }
-  double double1 = StringToDouble(String.join("", ClickedNumbers)); // Converts a joined array list of the numbers before the plus sign into a string
-  System.out.println("double1: " + double1);
-  
-  ClickedNumbers.clear();
-  int equalsIndex = arr.indexOf("=");
-  
-  for (int i = minusIndex + 1; i < equalsIndex; i++) {
-    ClickedNumbers.add(arr.get(i));
-  }
-  double double2 = StringToDouble(String.join("", ClickedNumbers)); // Converts a joined array list of numbers after the plus sign into a string
-  System.out.println("double2:" + double2);
-  
-  String difference = doubleToString(double1 - double2);
-  System.out.println("Difference: " + difference);
-  return difference;
-}
-
-public String multiplication(ArrayList<String> arr) {
-  ArrayList<String> ClickedNumbers = new ArrayList<String>();
-  int timesIndex = arr.indexOf("*");
-  System.out.println("Times index: " + timesIndex);
-  
-  for (int i = 0; i < timesIndex; i++) {
-    ClickedNumbers.add(arr.get(i)); // Adds all the number strings before the plus sign to clicked numbers
-  }
-  double double1 = StringToDouble(String.join("", ClickedNumbers)); // Converts a joined array list of the numbers before the plus sign into a string
-  System.out.println("double1: " + double1);
-  
-  ClickedNumbers.clear();
-  int equalsIndex = arr.indexOf("=");
-  
-  for (int i = timesIndex + 1; i < equalsIndex; i++) {
-    ClickedNumbers.add(arr.get(i));
-  }
-  double double2 = StringToFloat(String.join("", ClickedNumbers)); // Converts a joined array list of numbers after the plus sign into a string
-  System.out.println("double2:" + double2);
-  
-  String product = doubleToString(double1 * double2);
-  System.out.println("Product: " + product);
-  return product;
-}
-
-public String division(ArrayList<String> arr) {
-  ArrayList<String> ClickedNumbers = new ArrayList<String>();
-  int divideIndex = arr.indexOf("/");
-  System.out.println("Divide index" + divideIndex);
-  
-  for (int i = 0; i < divideIndex; i++) {
-    ClickedNumbers.add(arr.get(i)); // Adds all the number strings before the plus sign to clicked numbers
-  }
-  double double1 = StringToDouble(String.join("", ClickedNumbers)); // Converts a joined array list of the numbers before the plus sign into a string
-  System.out.println("double1: " + double1);
-  
-  ClickedNumbers.clear();
-  int equalsIndex = arr.indexOf("=");
-  
-  for (int i = divideIndex + 1; i < equalsIndex; i++) {
-    ClickedNumbers.add(arr.get(i));
-  }
-  double double2 = StringToDouble(String.join("", ClickedNumbers)); // Converts a joined array list of numbers after the plus sign into a string
-  System.out.println("double2:" + double2);
-  
-  String quotient = doubleToString(double1 / double2);
-  System.out.println("Quotient: " + quotient);
-  return quotient;
-}
-
 public String exponentOperation(ArrayList<String> arr) {
   ArrayList<String> ClickedNumbers = new ArrayList<String>();
   int carrotIndex = arr.indexOf("^");
@@ -286,28 +188,28 @@ public String exponentOperation(ArrayList<String> arr) {
         if (pressedNumber && pressedEquals) {
           if (listName.contains("+")) {
             processStatement = "Adding Numbers...";
-            listName.add(addition(listName));
-            result = addition(listName);
+            listName.add(addition.calculate());
+            result = addition.calculate();
           }
           else if (listName.contains("-")) {
             processStatement = "Subtracting Numbers...";
-            listName.add(subtraction(listName));
-            result = subtraction(listName);
+            listName.add(subtraction.calculate());
+            result = subtraction.calculate();
           }
           else if (listName.contains("*")) {
             processStatement = "Multiplying Numbers...";
-            listName.add(multiplication(listName));
-            result = multiplication(listName);
+            listName.add(multiplication.calculate());
+            result = multiplication.calculate();
           }
           else if (listName.contains("/")) {
             processStatement = "Dividing Numbers...";
-            listName.add(division(listName));
-            result = division(listName);
+            listName.add(division.calculate());
+            result = division.calculate();
           }
           else if (listName.contains("%")) {
             processStatement = "Modulufying Numbers...";
             listName.add(modulus.calculate());
-            result = moduloOperation(listName);
+            result = modulus.calculate();
           }
           else if (listName.contains("^")) {
             processStatement = "Powering numbers...";

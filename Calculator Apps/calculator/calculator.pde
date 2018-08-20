@@ -25,6 +25,11 @@ int rows = textToDisplay.length;
 int cols = textToDisplay[2].length;
 
 GridSquare[][] buttons;
+Operation addition = new Operation(listName, "Plus", "+");
+Operation subtraction = new Operation(listName, "Subtract", "-");
+Operation multiplication = new Operation(listName, "Multiply", "*");
+Operation division = new Operation(listName, "Divide", "/");
+Operation modulus = new Operation(listName,  "Modulo", "%");
 
 public void settings() {
   size(400, 500);
@@ -42,7 +47,6 @@ public void setup() {
 public void draw() {
   drawCalculator();
   drawButtons();
-  Operation add = new Operation(listName, "plus", "+")
 }
 
 public void drawCalculator() {
@@ -79,11 +83,12 @@ public void drawButtons()  {
       calcMarginX /= 2;
       calcMarginX += screenMargin;
       buttons[i][j] = new GridSquare(i * margin + calcMarginX, j * margin + idontevencareanymore, dimensions, dimensions);
+      buttons[i][j].displayText(textToDisplay, i, j);
     }
   }
   for (int i = 0; i < rows; i++) {
-    for (int j = 0; j < textToDisplay[i].length; j++) {
-      buttons[i][j].displayText(textToDisplay, i, j);
+    for (int j = 0; j < cols; j++) {
+      
     }
   }
   
@@ -199,31 +204,6 @@ public String division(ArrayList<String> arr) {
   return quotient;
 }
 
-public String moduloOperation(ArrayList<String> arr) {
-  ArrayList<String> ClickedNumbers = new ArrayList<String>();
-  int modulusIndex = arr.indexOf("%");
-  System.out.println("Modulus Index" + modulusIndex);
-  
-  for (int i = 0; i < modulusIndex; i++) {
-    ClickedNumbers.add(arr.get(i)); // Adds all the number strings before the plus sign to clicked numbers
-  }
-  double double1 = StringToDouble(String.join("", ClickedNumbers)); // Converts a joined array list of the numbers before the plus sign into a string
-  System.out.println("double1: " + double1);
-  
-  ClickedNumbers.clear();
-  int equalsIndex = arr.indexOf("=");
-  
-  for (int i = modulusIndex + 1; i < equalsIndex; i++) {
-    ClickedNumbers.add(arr.get(i));
-  }
-  double double2 = StringToDouble(String.join("", ClickedNumbers)); // Converts a joined array list of numbers after the plus sign into a string
-  System.out.println("double2:" + double2);
-  
-  String modulusResult = doubleToString(double1 % double2);
-  System.out.println("Modulus Result " + modulusResult);
-  return modulusResult;
-}
-
 public String exponentOperation(ArrayList<String> arr) {
   ArrayList<String> ClickedNumbers = new ArrayList<String>();
   int carrotIndex = arr.indexOf("^");
@@ -326,7 +306,7 @@ public String exponentOperation(ArrayList<String> arr) {
           }
           else if (listName.contains("%")) {
             processStatement = "Modulufying Numbers...";
-            listName.add(moduloOperation(listName));
+            listName.add(modulus.calculate());
             result = moduloOperation(listName);
           }
           else if (listName.contains("^")) {

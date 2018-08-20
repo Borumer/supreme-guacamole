@@ -10,6 +10,23 @@ public class Operation {
     operation = op;
     operationSymbol = operSymbol;
   }
+
+  double doOperation(double double1, double double2) {
+    switch (operationSymbol) {
+      case "+":
+        return double1 + double2;
+      case "-":
+        return double1 - double2;
+      case "*":
+        return double1 * double2;
+      case "/":
+        return double1 / double2;
+      case "%":
+        return double1 % double2;
+      default: 
+        return 0.0;
+    }
+  }
   
   String calculate() {
     ArrayList<String> ClickedNumbers = new ArrayList<String>();
@@ -35,22 +52,5 @@ public class Operation {
     String operationResult = calculator.doubleToString(operResult);
     System.out.println("Operation Result: " + operationResult);
     return operationResult;
-  }
-
-  double doOperation(double double1, double double2) {
-    switch (operationSymbol) {
-      case "+":
-        return double1 + double2;
-      case "-":
-        return double1 - double2;
-      case "*":
-        return double1 * double2;
-      case "/":
-        return double1 / double2;
-      case "%":
-        return double1 % double2;
-      default: 
-        return 0.0;
-    }
   }
 }

@@ -23,6 +23,8 @@ public class Operation {
         return double1 / double2;
       case "%":
         return double1 % double2;
+      case "^":
+        return double1 ^ double2;
       default: 
         return 0.0;
     }

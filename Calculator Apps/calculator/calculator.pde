@@ -30,10 +30,12 @@ Operation subtraction = new Operation(listName, "Subtract", "-");
 Operation multiplication = new Operation(listName, "Multiply", "*");
 Operation division = new Operation(listName, "Divide", "/");
 Operation modulus = new Operation(listName,  "Modulo", "%");
+Operation exponential = new Operation(listName, "Expound", "^")
 
 public void settings() {
   size(400, 500);
 }
+
 public void setup() {
 
   background(255, 255, 255);
@@ -213,8 +215,8 @@ public String exponentOperation(ArrayList<String> arr) {
           }
           else if (listName.contains("^")) {
             processStatement = "Powering numbers...";
-            listName.add(exponentOperation(listName));
-            result = exponentOperation(listName);
+            listName.add(exponential.calculate());
+            result = exponential.calculate();
           }
         } 
       }

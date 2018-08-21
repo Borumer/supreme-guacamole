@@ -2,9 +2,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public String result = "";
+public String processStatement = "";
 float screenMargin = 40;
 float padding = 15;
-ArrayList<String> listName =  new ArrayList<String>();
+ArrayList<String> listName = new ArrayList<String>();
 float w = 0;
 float h = 0;
 
@@ -88,76 +89,10 @@ public void drawButtons()  {
       buttons[i][j].displayText(textToDisplay, i, j);
     }
   }
-  for (int i = 0; i < rows; i++) {
-    for (int j = 0; j < cols; j++) {
-      
-    }
-  }
   
 }
 
-public static String doubleToString(double dble) {
-  return String.valueOf(dble);
-}
-
-public static float StringToFloat(String string) {
-  return Float.parseFloat(string);
-}
-
-public static double StringToDouble(String string) {
-  return Double.parseDouble(string);
-}
-  
-public class GridSquare{
-
-    public float x;
-    public float y;
-    public float ws;
-    public float hs;
-    public String value;
-    public String processStatement = "";
-      
-    public GridSquare(float tempX, float tempY, float tempW, float tempH)  {   
-        x = tempX;
-        y = tempY;
-        ws = tempW;
-        hs = tempH; 
-    }
-    
-    public Boolean onHover(float clickedX, float clickedY) {
-      return clickedX > x && clickedX < x + ws && clickedY > y && clickedY < y + hs;
-    }
-    
-    public void onClick(float clickedX, float clickedY)  { 
-        boolean isEmpty = result.length() == 0;
-        if (isEmpty && this.onHover(clickedX, clickedY)) {
-          listName.add(value);
-          System.out.println("Mouse Button Input: " + listName.toString());
-        }
-        else if (!isEmpty && this.onHover(clickedX, clickedY) && listName.size() <= 1) {
-          listName.remove(0);
-          listName.add(value);
-          result = "";
-        }
-    }
-      
-    public void draw() {
-      fill(0, 30, 240);
-      rectMode(CORNER);
-      rect(x, y, ws, hs);
-    }
-    
-    public void displayText(String[][] text2Display, int i, int j) {
-      float squarePadding = 20; // Space between each square
-      this.draw();
-      textSize(20);
-      fill(255, 255, 255);
-      textAlign(CENTER, CENTER);
-      value = text2Display[i][j];
-      text(value, x + squarePadding, y + squarePadding);
-    }
-
-    public void getCalcFunctionality() {
+public void getCalcFunctionality() {
       String[] numberStr = {"1", "2", "3", "4", "5", "6", "7", "8", "9"};
       Boolean pressedEquals = listName.contains("=");
 
@@ -206,6 +141,66 @@ public class GridSquare{
         drawScreen();
       }
       if (processStatement != "") System.out.println(processStatement);
+}
+
+public static String doubleToString(double dble) {
+  return String.valueOf(dble);
+}
+
+public static float StringToFloat(String string) {
+  return Float.parseFloat(string);
+}
+
+public static double StringToDouble(String string) {
+  return Double.parseDouble(string);
+}
+  
+public class GridSquare{
+
+    public float x;
+    public float y;
+    public float ws;
+    public float hs;
+    public String value;
+      
+    public GridSquare(float tempX, float tempY, float tempW, float tempH)  {   
+        x = tempX;
+        y = tempY;
+        ws = tempW;
+        hs = tempH; 
+    }
+    
+    public Boolean onHover(float clickedX, float clickedY) {
+      return clickedX > x && clickedX < x + ws && clickedY > y && clickedY < y + hs;
+    }
+    
+    public void onClick(float clickedX, float clickedY)  { 
+        boolean isEmpty = result.length() == 0;
+        if (isEmpty && this.onHover(clickedX, clickedY)) {
+          listName.add(value);
+          System.out.println("Mouse Button Input: " + listName.toString());
+        }
+        else if (!isEmpty && this.onHover(clickedX, clickedY) && listName.size() <= 1) {
+          listName.remove(0);
+          listName.add(value);
+          result = "";
+        }
+    }
+      
+    public void draw() {
+      fill(0, 30, 240);
+      rectMode(CORNER);
+      rect(x, y, ws, hs);
+    }
+    
+    public void displayText(String[][] text2Display, int i, int j) {
+      float squarePadding = 20; // Space between each square
+      this.draw();
+      textSize(20);
+      fill(255, 255, 255);
+      textAlign(CENTER, CENTER);
+      value = text2Display[i][j];
+      text(value, x + squarePadding, y + squarePadding);
     }
   }
 
@@ -213,7 +208,7 @@ public void mouseReleased() {
     for (int i = 0; i < rows; i++) {
       for (int j = 0; j < cols; j++) {
         buttons[i][j].onClick(mouseX, mouseY);
-        buttons[i][j].getCalcFunctionality(); 
       }
     }
+    getCalcFunctionality(); 
   }

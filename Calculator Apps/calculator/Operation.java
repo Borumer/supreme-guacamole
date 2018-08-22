@@ -38,7 +38,7 @@ public class Operation {
     for (int i = 0; i < operationIndex; i++) {
       ClickedNumbers.add(userInput.get(i)); // Adds all the number strings before the sign to clicked numbers
     }
-    double double1 = calculator.StringToFloat(String.join("", ClickedNumbers)); // Converts a joined array list of the numbers before the plus sign into a string
+    double double1 = calculator.StringToDouble(String.join("", ClickedNumbers)); // Converts a joined array list of the numbers before the plus sign into a string
     System.out.println("double1: " + double1);
   
     ClickedNumbers.clear();
@@ -47,7 +47,7 @@ public class Operation {
     for (int i = operationIndex + 1; i < equalsIndex; i++) {
       ClickedNumbers.add(userInput.get(i));
     }
-    double double2 = calculator.StringToFloat(String.join("", ClickedNumbers)); // Converts a joined array list of numbers after the sign into a string
+    double double2 = calculator.StringToDouble(String.join("", ClickedNumbers)); // Converts a joined array list of numbers after the sign into a string
     System.out.println("double2: " + double2);
 
     Double operResult = this.doOperation(double1, double2);

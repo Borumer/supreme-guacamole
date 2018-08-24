@@ -97,8 +97,7 @@ public void getCalcFunctionality() {
       Boolean pressedEquals = listName.contains("=");
 
       for(String number : numberStr) {
-        Boolean pressedNumber = listName.contains(number);
-        if (pressedNumber && pressedEquals) {
+        if (listName.contains(number) && pressedEquals) {
           if (listName.contains("+")) {
             processStatement = "Adding Numbers...";
             result = addition.calculate();

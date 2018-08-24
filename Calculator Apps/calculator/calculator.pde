@@ -101,32 +101,26 @@ public void getCalcFunctionality() {
         if (pressedNumber && pressedEquals) {
           if (listName.contains("+")) {
             processStatement = "Adding Numbers...";
-            listName.add(addition.calculate());
             result = addition.calculate();
           }
           else if (listName.contains("-")) {
             processStatement = "Subtracting Numbers...";
-            listName.add(subtraction.calculate());
             result = subtraction.calculate();
           }
           else if (listName.contains("*")) {
             processStatement = "Multiplying Numbers...";
-            listName.add(multiplication.calculate());
             result = multiplication.calculate();
           }
           else if (listName.contains("/")) {
             processStatement = "Dividing Numbers...";
-            listName.add(division.calculate());
             result = division.calculate();
           }
           else if (listName.contains("%")) {
             processStatement = "Modulufying Numbers...";
-            listName.add(modulus.calculate());
             result = modulus.calculate();
           }
           else if (listName.contains("^")) {
-            processStatement = "Powering numbers...";
-            listName.add(exponential.calculate());
+            processStatement = "Expounding numbers...";
             result = exponential.calculate();
           }
         } 

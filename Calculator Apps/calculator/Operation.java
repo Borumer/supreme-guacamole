@@ -31,8 +31,9 @@ public class Operation {
   }
   
   String calculate() {
-    ArrayList<String> ClickedNumbers = new ArrayList<String>();
     int operationIndex = userInput.indexOf(operationSymbol);
+    ArrayList<String> ClickedNumbers = new ArrayList<String>();
+
     System.out.println(operation + " index: " + operationIndex);
   
     for (int i = 0; i < operationIndex; i++) {
@@ -54,5 +55,9 @@ public class Operation {
     String operationResult = calculator.doubleToString(operResult);
     System.out.println("Operation Result: " + operationResult);
     return operationResult;
+  }
+
+  static void printInfo() {
+    
   }
 }

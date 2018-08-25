@@ -56,8 +56,4 @@ public class Operation {
     System.out.println("Operation Result: " + operationResult);
     return operationResult;
   }
-
-  static void printInfo() {
-    
-  }
 }

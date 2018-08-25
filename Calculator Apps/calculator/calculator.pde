@@ -1,11 +1,12 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.regex.*;
 
 public String result = "";
 public String processStatement = "";
 float screenMargin = 40;
 float padding = 15;
-ArrayList<String> listName = new ArrayList<String>();
+ArrayList < String > listName = new ArrayList < String > ();
 float w = 0;
 float h = 0;
 
@@ -13,13 +14,32 @@ float totalMargin = 2 * screenMargin;
 
 String[][] textToDisplay = new String[][] {
   {
-    "1", "4", "7", ".", "C"
-  }, {
-    "2", "5", "8", "0", "^"
-  }, {
-    "3", "6", "9", "±", "%"
-  }, {
-    "*", "+", "-", "/", "="
+    "1",
+    "4",
+    "7",
+    ".",
+    "C"
+  },
+  {
+    "2",
+    "5",
+    "8",
+    "0",
+    "^"
+  },
+  {
+    "3",
+    "6",
+    "9",
+    "±",
+    "%"
+  },
+  {
+    "*",
+    "+",
+    "-",
+    "/",
+    "="
   }
 };
 int rows = textToDisplay.length;
@@ -30,7 +50,7 @@ Operation addition = new Operation(listName, "Plus", "+");
 Operation subtraction = new Operation(listName, "Subtract", "-");
 Operation multiplication = new Operation(listName, "Multiply", "*");
 Operation division = new Operation(listName, "Divide", "/");
-Operation modulus = new Operation(listName,  "Modulo", "%");
+Operation modulus = new Operation(listName, "Modulo", "%");
 Operation exponential = new Operation(listName, "Expound", "^");
 
 public void settings() {
@@ -69,7 +89,7 @@ public void drawScreen() {
   text(String.join("", listName), 300, 80);
 }
 
-public void drawButtons()  {
+public void drawButtons() {
   w = (width - totalMargin);
   h = (height - totalMargin);
   buttons = new GridSquare[rows][cols];
@@ -79,7 +99,6 @@ public void drawButtons()  {
   float totalWidth = margin + dimensions * (cols - 1);
   float idontevencareanymore = 130;
 
-  
   for (int i = 0; i < rows; i++) {
     for (int j = 0; j < textToDisplay[i].length; j++) {
       calcMarginX = w - totalWidth;
@@ -89,51 +108,56 @@ public void drawButtons()  {
       buttons[i][j].displayText(textToDisplay, i, j);
     }
   }
-  
+
+}
+
+public static boolean validateExpression(String exp ) {
+  // Reg Ex: - or + one or more numbers . oe or more numbers operator same thing
+  String regex = "^[-+]?[0-9]*\\.?[0-9]+[\\/\\+\\-\\*][-+]?[0-9]*\\.?[0-9]+=";
+  Pattern pattern = Pattern.compile( regex );
+  Matcher matcher = pattern.matcher( exp.trim() );
+  System.out.println(matcher.find());
+  return matcher.find();
 }
 
 public void getCalcFunctionality() {
-      String[] numberStr = {"1", "2", "3", "4", "5", "6", "7", "8", "9"};
-      Boolean pressedEquals = listName.contains("=");
-
-      for(String number : numberStr) {
-        if (listName.contains(number) && pressedEquals) {
-          if (listName.contains("+")) {
-            processStatement = "Adding Numbers...";
-            result = addition.calculate();
-          }
-          else if (listName.contains("-")) {
-            processStatement = "Subtracting Numbers...";
-            result = subtraction.calculate();
-          }
-          else if (listName.contains("*")) {
-            processStatement = "Multiplying Numbers...";
-            result = multiplication.calculate();
-          }
-          else if (listName.contains("/")) {
-            processStatement = "Dividing Numbers...";
-            result = division.calculate();
-          }
-          else if (listName.contains("%")) {
-            processStatement = "Modulufying Numbers...";
-            result = modulus.calculate();
-          }
-          else if (listName.contains("^")) {
-            processStatement = "Expounding numbers...";
-            result = exponential.calculate();
-          }
-        } 
-      }
-
-      if (listName.contains("C")) {
-        listName.clear(); // Clears the "Screen" when C is clicked by clearing the array
-      }
-      else if(listName.contains("=")) {
-        listName.clear(); 
-        listName.add(result);
-        drawScreen();
-      }
-      if (processStatement != "") System.out.println(processStatement);
+  boolean isValidated = validateExpression(String.join(" ", listName));
+  System.out.println(isValidated);
+  if (isValidated) {
+    if (listName.contains("+")) {
+      processStatement = "Adding Numbers...";
+      result = addition.calculate();
+    }
+    else if (listName.contains("-")) {
+      processStatement = "Subtracting Numbers...";
+      result = subtraction.calculate();
+    }
+    else if (listName.contains("*")) {
+      processStatement = "Multiplying Numbers...";
+      result = multiplication.calculate();
+    }
+    else if (listName.contains("/")) {
+      processStatement = "Dividing Numbers...";
+      result = division.calculate();
+    }
+    else if (listName.contains("%")) {
+      processStatement = "Modulufying Numbers...";
+      result = modulus.calculate();
+    }
+    else if (listName.contains("^")) {
+      processStatement = "Expounding numbers...";
+      result = exponential.calculate();
+    }
+  }
+  if (listName.contains("C")) {
+    listName.clear(); // Clears the "Screen" when C is clicked by clearing the array
+  }
+  else if (listName.contains("=")) {
+    listName.clear();
+    listName.add(result);
+    drawScreen();
+  }
+  if (processStatement != "") System.out.println(processStatement);
 }
 
 public static String doubleToString(double dble) {
@@ -147,12 +171,12 @@ public static float StringToFloat(String string) {
 public static double StringToDouble(String string) {
   return Double.parseDouble(string);
 }
-  
+
 public void mouseReleased() {
-    for (int i = 0; i < rows; i++) {
-      for (int j = 0; j < cols; j++) {
-        buttons[i][j].onClick(mouseX, mouseY);
-      }
+  for (int i = 0; i < rows; i++) {
+    for (int j = 0; j < cols; j++) {
+      buttons[i][j].onClick(mouseX, mouseY);
     }
-    getCalcFunctionality(); 
   }
+  getCalcFunctionality();
+}

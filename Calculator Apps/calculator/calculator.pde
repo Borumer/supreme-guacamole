@@ -111,18 +111,16 @@ public void drawButtons() {
 
 }
 
-public static boolean validateExpression(String exp ) {
+public boolean validateExpression(String exp ) {
   // Reg Ex: - or + one or more numbers . oe or more numbers operator same thing
   String regex = "^[-+]?[0-9]*\\.?[0-9]+[\\/\\+\\-\\*][-+]?[0-9]*\\.?[0-9]+=";
   Pattern pattern = Pattern.compile( regex );
   Matcher matcher = pattern.matcher( exp.trim() );
-  System.out.println(matcher.find());
   return matcher.find();
 }
 
 public void getCalcFunctionality() {
-  boolean isValidated = validateExpression(String.join(" ", listName));
-  System.out.println(isValidated);
+  boolean isValidated = validateExpression(String.join("", listName));
   if (isValidated) {
     if (listName.contains("+")) {
       processStatement = "Adding Numbers...";

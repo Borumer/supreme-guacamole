@@ -9,3 +9,13 @@ Finishing touches will include
 	making the colors and design more professional, higher quality,
 	mouse hover making the button display change in some way
 
+8/28/2018
+Release v1.1.2
+The app calculations are now refactored to be called from a single method in the Operation class
+This app uses regular expressions
+	There are now negatives
+	Resolved issue with text repeating
+	When there are supposed to be errors, the program simply doesn't try to do the operation because the expression isn't valid
+The less precision is still a problem even though the floats are not 
+Overall, the app is much easier to code, use, and update
+

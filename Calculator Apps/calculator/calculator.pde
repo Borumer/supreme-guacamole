@@ -31,7 +31,7 @@ String[][] textToDisplay = new String[][] {
     "3",
     "6",
     "9",
-    "±",
+    "",
     "%"
   },
   {
@@ -58,13 +58,7 @@ public void settings() {
 }
 
 public void setup() {
-
   background(255, 255, 255);
-  for (String[] outerArray: textToDisplay) {
-    for (String element: outerArray) {
-      System.out.println(element);
-    }
-  }
   System.out.println(Arrays.deepToString(textToDisplay));
 }
 public void draw() {
@@ -113,7 +107,7 @@ public void drawButtons() {
 
 public boolean validateExpression(String exp ) {
   // Reg Ex: - or + one or more numbers . oe or more numbers operator same thing
-  String regex = "^[-+]?[0-9]*\\.?[0-9]+[\\/\\+\\-\\*][-+]?[0-9]*\\.?[0-9]+=";
+  String regex = "^[-]?[0-9]*\\.?[0-9]+[\\/\\+\\-\\*\\%\\^][-+]?[0-9]*\\.?[0-9]+=$";
   Pattern pattern = Pattern.compile( regex );
   Matcher matcher = pattern.matcher( exp.trim() );
   return matcher.find();

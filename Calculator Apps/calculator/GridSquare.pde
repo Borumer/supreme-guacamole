@@ -18,16 +18,18 @@ public class GridSquare{
     }
     
     public void onClick(float clickedX, float clickedY)  { 
-        boolean isEmpty = result.length() == 0;
-        if (isEmpty && this.onHover(clickedX, clickedY)) {
+      boolean isEmpty = result.length() == 0;
+      if (this.onHover(clickedX, clickedY)) {
+        if (isEmpty) {
           listName.add(value);
           System.out.println("Mouse Button Input: " + listName.toString());
         }
-        else if (!isEmpty && this.onHover(clickedX, clickedY) && listName.size() <= 1) {
+        else if (!isEmpty && listName.size() <= 1) {
           listName.remove(0);
           listName.add(value);
           result = "";
         }
+      }
     }
       
     public void draw() {

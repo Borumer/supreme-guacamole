@@ -6,7 +6,7 @@ public String result = "";
 public String processStatement = "";
 float screenMargin = 40;
 float padding = 15;
-ArrayList < String > listName = new ArrayList < String > ();
+public static ArrayList < String > listName = new ArrayList < String > ();
 float w = 0;
 float h = 0;
 
@@ -46,12 +46,12 @@ int rows = textToDisplay.length;
 int cols = textToDisplay[2].length;
 
 GridSquare[][] buttons;
-Operation addition = new Operation(listName, "Plus", "+");
-Operation subtraction = new Operation(listName, "Subtract", "-");
-Operation multiplication = new Operation(listName, "Multiply", "*");
-Operation division = new Operation(listName, "Divide", "/");
-Operation modulus = new Operation(listName, "Modulo", "%");
-Operation exponential = new Operation(listName, "Expound", "^");
+Operation addition = new Operation("Plus", "+");
+Operation subtraction = new Operation("Subtract", "-");
+Operation multiplication = new Operation("Multiply", "*");
+Operation division = new Operation("Divide", "/");
+Operation modulus = new Operation("Modulo", "%");
+Operation exponential = new Operation("Expound", "^");
 
 public void settings() {
   size(400, 500);
@@ -172,3 +172,8 @@ public void mouseReleased() {
   }
   getCalcFunctionality();
 }
+
+public void keyTyped() {
+  listName.add(Character.toString(key));
+}
+

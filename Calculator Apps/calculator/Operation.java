@@ -1,12 +1,11 @@
 import java.util.ArrayList;
 
 public class Operation {
-  ArrayList<String> userInput = new ArrayList<String>();
   String operation;
   String operationSymbol;
+  ArrayList<String> userInput = calculator.listName;
   
-	public Operation(ArrayList<String> arr, String op, String operSymbol) {
-    userInput = arr;
+	public Operation(String op, String operSymbol) {
     operation = op;
     operationSymbol = operSymbol;
   }

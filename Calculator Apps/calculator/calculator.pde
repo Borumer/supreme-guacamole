@@ -174,6 +174,14 @@ public void mouseReleased() {
 }
 
 public void keyTyped() {
-  listName.add(Character.toString(key));
+  String key1 = Character.toString(key);
+  for (int i = 0; i < textToDisplay.length; i++) {
+    if (Arrays.asList(textToDisplay[i]).contains(key1)) {
+      listName.add(key1);
+    }
+  }
+  final boolean bool = key == ENTER || key == RETURN;
+  if (bool) listName.add("=");
+  getCalcFunctionality();
 }
 

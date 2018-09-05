@@ -13,9 +13,8 @@ function showSpace() {
   return "https://s3.amazonaws.com/codecademy-content/projects/chore-door/images/space.svg";
 }
 let numClosedDoors = 3;
-let openDoor1, openDoor2, openDoor3;
+window.openDoor1, window.openDoor2, window.openDoor3;
 let currentlyPlaying = true;
-let doorVariables = [openDoor1, openDoor2, openDoor3];
 
 const isClicked = door => {
   return door.src != closeDoor();
@@ -57,17 +56,7 @@ const randomChoreDoorGenerator = () => {
 doorEls.forEach((doorEl, index) => {
   doorEl.onclick = function() {
     if(!isClicked(this) && currentlyPlaying) {
-      switch (index) {
-        case 0:
-          this.src = openDoor1;
-          break;
-        case 1:
-          this.src = openDoor2;
-          break;
-        case 2:
-          this.src = openDoor3;
-          break;
-      }
+      this.src = window['openDoor' + (1 + index).toString()]
       playDoor(this);
     }
   }
@@ -88,6 +77,15 @@ function startRound() {
   startButton.innerHTML = "Good Luck!";
   currentlyPlaying = true;
   randomChoreDoorGenerator(); // Get random door number of each thing behind door (image)
+}
+
+const getYourScore = () => {
+  score++;
+  currentStreak.innerHTML = score;
+  if (score > highScore) {
+    highScore = score;
+    bestStreak.innerHTML = highScore;
+  }
 }
 
 startRound();

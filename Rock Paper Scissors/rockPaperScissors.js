@@ -75,7 +75,8 @@ function playGame() {
   
   console.log(`Your Choice: ${userChoice}`);
   console.log(`Computer's Choice: ${computerChoice}`);
-	console.log(`Game Result: ${determineWinner(userChoice, computerChoice)}`);
+	console.log(determineWinner(userChoice, computerChoice));
+  console.log();
 }
 
 playGame();

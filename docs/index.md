@@ -10,5 +10,5 @@
  (https://creativecommons.org/licenses/by-sa/4.0
 )], from Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:Avocado.png"><img width="512" alt="Avocado" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Avocado.png/512px-Avocado.png"></a>
 
-<script src = "https://cdn.rawgit.com/KnowledgeableKangaroo/KnowledgeableKangaroo.github.io/943d436bf68553d571c876e1db262f2c8ecace29/script.js"></script>
+<script src = "https://cdn.rawgit.com/KnowledgeableKangaroo/KnowledgeableKangaroo.github.io/03df72b3d7c533c1c265d659f494c3f88318d1ff/script.js"></script>
 

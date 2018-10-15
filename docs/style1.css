@@ -1,0 +1,21 @@
+/* Button Styles */
+
+button {
+  display: block; 
+  clear: left; 
+  position: relative; 
+  width: 18.5%; 
+  text-align: center; 
+  margin: 5% 0;
+}
+
+button p {
+  font-size: 1.5em;
+}
+
+button img {
+  float: none;
+  vertical-align: middle;
+  height: 1em; 
+}
+

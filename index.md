@@ -2,6 +2,7 @@
 
 ## About ##
 
+<object width = "900" height = "370" data = "README.html" type = "text/html"></object>
 <button onclick = "goToHomePage()">
   <img src = "https://upload.wikimedia.org/wikipedia/commons/a/a3/Roundel_of_the_Australian_Army.svg" width = "25">
     Home

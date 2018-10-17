@@ -9,5 +9,5 @@ Get help with the project by posting an issue, refering to the project github su
 
 I, Varun, maintain the project. I have gotten some from Id Tech Summer Camp courses and others from Codeacademy. 
 
-<KnowledgeableKangaroo.github.io/supreme-guacamole>
+https://knowledgeablekangaroo.github.io/supreme-guacamole/
 

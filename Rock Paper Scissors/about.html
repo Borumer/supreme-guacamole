@@ -1,0 +1,14 @@
+<h1 id="about-rock-paper-scissors">About Rock Paper Scissors</h1>
+<p>The classic game of rock paper scissors is a game of &#39;luck&#39; used for settling disputes and sometimes for fun. This folder contains rock paper scissors programmed through the console in both Java(Scanner, Random) and JavaScript(node.js)</p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/6/67/Rock-paper-scissors.svg" alt="Diagram of rock paper scissors"></p>
+<p>By Enzoklop - Own work, CC BY-SA 3.0, <a href="https://commons.wikimedia.org/w/index.php?curid=27958688">https://commons.wikimedia.org/w/index.php?curid=27958688</a></p>
+<h2 id="rockpaperscissors-java">RockPaperScissors.java</h2>
+<p>The computer asks the user which element
+Depending on the element the user chose, a corresponding index is chosen
+The computer generates a random index, and with that, a random element. Five if/else if/else in the control flow statement: rock and scissors, scissors and rock, tie, maximum index, and null if the user doesn&#39;t say one of the valid options</p>
+<h2 id="rockpaperscissors-js">RockPaperScissors.js</h2>
+<p><code>getComputerChoice()</code> - The computer generates a random number, 0, 1, or 2 and based on the number a <code>switch</code> statement decides their game element. 
+<code>getUserChoice(userInput)</code> - returns <code>userInput</code> if valid choice, otherwise logs error
+<code>determineWinner(userChoice, computerChoice)</code> - Uses nested control flow statements to manually determine the winner for every combination (ties as one if statement); returns the winning element plus the win message or lose message;
+<code>playGame()</code> - calls <code>determineWinner(getUserChoice, getComputerChoice);</code> Logs choices and result to console</p>
+<p>Read more about rock paper scissors <a href="https://en.wikipedia.org/wiki/Rock%E2%80%93paper%E2%80%93scissors">here</a></p>

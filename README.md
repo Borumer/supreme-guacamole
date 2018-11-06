@@ -10,5 +10,10 @@ I, Varun, maintain the project. I have gotten some from Id Tech Summer Camp cour
 
 https://knowledgeablekangaroo.github.io/supreme-guacamole/
 
-<script src = "https://cdn.rawgit.com/KnowledgeableKangaroo/KnowledgeableKangaroo.github.io/master/script.js"></script>
-
+<script>
+	let linkStylesheet = document.createElement('link');
+	linkStylesheet.href = "css/normalize.css";
+	linkStylesheet.type = "text/css";
+	linkStylesheet.rel = "stylesheet";
+	document.appendChild(linkStylesheet);
+</script>

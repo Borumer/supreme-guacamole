@@ -20,7 +20,7 @@
 <script src = "https://cdn.jsdelivr.net/gh/KnowledgeableKangaroo/KnowledgeableKangaroo.github.io/script.js"></script>
 <script> 
 	const secondStyle = document.createElement("link"); 
-	secondStyle.href = "style1.css"; 
+	secondStyle.href = "css/style1.css"; 
 	secondStyle.rel = "stylesheet"; 
 	secondStyle.type = "text/css"; 
 	document.head.appendChild(secondStyle); 

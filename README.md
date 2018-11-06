@@ -15,5 +15,5 @@ https://knowledgeablekangaroo.github.io/supreme-guacamole/
 	linkStylesheet.href = "css/normalize.css";
 	linkStylesheet.type = "text/css";
 	linkStylesheet.rel = "stylesheet";
-	document.appendChild(linkStylesheet);
+	document.head.appendChild(linkStylesheet);
 </script>

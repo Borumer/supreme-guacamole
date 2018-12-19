@@ -34,32 +34,22 @@ float totalMargin = 2 * screenMargin;
 
 String[][] textToDisplay = new String[][] {
   {
-    "1",
-    "4",
-    "7",
-    ".",
-    "C"
+    "%", "\u221A", "x²", "1/x"
   },
   {
-    "2",
-    "5",
-    "8",
-    "0",
-    "^"
+    "^", "C", "<-", "/"
   },
   {
-    "3",
-    "6",
-    "9",
-    "",
-    "%"
+    "7", "8", "9", "*",
   },
   {
-    "*",
-    "+",
-    "-",
-    "/",
-    "="
+    "4", "5", "6", "-",
+  },
+  {
+    "1", "2", "3", "+",
+  },
+  {
+    " ", "0", ".", "=",
   }
 };
 int rows = textToDisplay.length;
@@ -72,9 +62,10 @@ Operation multiplication = new Operation("Multiply", "*");
 Operation division = new Operation("Divide", "/");
 Operation modulus = new Operation("Modulo", "%");
 Operation exponential = new Operation("Expound", "^");
+Operation root = new Operation("Root", "\u221A");
 
 public void settings() {
-  size(400, 500);
+  size(400, 600);
 }
 
 public void setup() {
@@ -90,14 +81,18 @@ public void drawCalculator() {
   w = (width - totalMargin);
   h = (height - totalMargin);
   rectMode(CORNER);
+  // Draw perimeter of calculator
   fill(125, 125, 125);
   rect(screenMargin, screenMargin, w, h);
-  fill(255);
-  rect(screenMargin + padding, screenMargin + padding, w - 2 * padding, h / 8);
-  drawScreen();
+  // Create screen 
+  drawScreen(); 
 }
 
 public void drawScreen() {
+  w = (width - totalMargin);
+  h = (height - totalMargin);
+  fill(255);
+  rect(screenMargin + padding, screenMargin + padding, w - 2 * padding, h / 8); 
   fill(0, 0, 0);
   textAlign(RIGHT, CENTER);
   text(String.join("", listName), 300, 80);
@@ -109,16 +104,21 @@ public void drawButtons() {
   buttons = new GridSquare[rows][cols];
   float margin = 65;
   float calcMarginX = 0;
+  float calcMarginY = 130;
   float dimensions = 45;
   float totalWidth = margin + dimensions * (cols - 1);
-  float idontevencareanymore = 130;
 
   for (int i = 0; i < rows; i++) {
     for (int j = 0; j < textToDisplay[i].length; j++) {
       calcMarginX = w - totalWidth;
       calcMarginX /= 2;
       calcMarginX += screenMargin;
-      buttons[i][j] = new GridSquare(i * margin + calcMarginX, j * margin + idontevencareanymore, dimensions, dimensions);
+      buttons[i][j] = new GridSquare(j * margin + calcMarginX, i * margin + calcMarginY, dimensions, dimensions);
+      if (buttons[i][j].onHover(mouseX, mouseY)) {
+        buttons[i][j].c = color(255, 210, 210, 100);
+      } else {
+        buttons[i][j].c = color(255, 255, 255);
+      }
       buttons[i][j].displayText(textToDisplay, i, j);
     }
   }
@@ -126,8 +126,8 @@ public void drawButtons() {
 }
 
 public boolean validateExpression(String exp ) {
-  // Reg Ex: - or + one or more numbers . oe or more numbers operator same thing
-  String regex = "^[-]?[0-9]*\\.?[0-9]+[\\/\\+\\-\\*\\%\\^][-+]?[0-9]*\\.?[0-9]+=$";
+  // Reg Ex: - or + one or more numbers . one or more numbers operator same thing
+  String regex = "^[-]?[0-9]*\\.?[0-9]+[\\/\\+\\-\\*\\%\\^\\\u221A][-+]?[0-9]*\\.?[0-9]+=$";
   Pattern pattern = Pattern.compile( regex );
   Matcher matcher = pattern.matcher( exp.trim() );
   return matcher.find();
@@ -160,16 +160,21 @@ public void getCalcFunctionality() {
       processStatement = "Expounding numbers...";
       result = exponential.calculate();
     }
+    else if (listName.contains("\u221A")) {
+      processStatement = "Rooting Numbers...";
+      result = root.calculate();
+    }
+    System.out.println(processStatement);
   }
   if (listName.contains("C")) {
     listName.clear(); // Clears the "Screen" when C is clicked by clearing the array
   }
   else if (listName.contains("=")) {
-    listName.clear();
-    listName.add(result);
+    listName.clear(); // Clears the "Screen" when = is clicked by clearing the array
+    listName.add(result); // Show the result
     drawScreen();
   }
-  if (processStatement != "") System.out.println(processStatement);
+
 }
 
 public static String doubleToString(double dble) {
@@ -212,6 +217,7 @@ public class GridSquare{
     public float ws;
     public float hs;
     public String value;
+    public int c = color(255, 255, 255);
       
     public GridSquare(float tempX, float tempY, float tempW, float tempH)  {   
         x = tempX;
@@ -225,22 +231,22 @@ public class GridSquare{
     }
     
     public void onClick(float clickedX, float clickedY)  { 
-      boolean isEmpty = result.length() == 0;
-      if (this.onHover(clickedX, clickedY)) {
-        if (isEmpty) {
-          listName.add(value);
-          System.out.println("Mouse Button Input: " + listName.toString());
-        }
-        else if (!isEmpty && listName.size() <= 1) {
-          listName.remove(0);
-          listName.add(value);
+      boolean isEmpty = result.length() == 0; // If the user is still putting in the expression
+      // If a grid square is clicked
+      if (this.onHover(clickedX, clickedY)) { 
+        if (isEmpty) { 
+          listName.add(value); // Push the result to the screen (listName)
+          System.out.println("Mouse Button Input: " + listName.toString()); // Show the array of mouse button input
+        } else if (!isEmpty && listName.size() <= 1) { // If the user starts a new expression without pressing C then reset all the variables and add the first character to the screen and listName arrayList
+          listName.remove(0); 
+          listName.add(value); 
           result = "";
         }
       }
     }
       
     public void draw() {
-      fill(0, 30, 240);
+      fill(c);
       rectMode(CORNER);
       rect(x, y, ws, hs);
     }
@@ -249,7 +255,7 @@ public class GridSquare{
       float squarePadding = 20; // Space between each square
       this.draw();
       textSize(20);
-      fill(255, 255, 255);
+      fill(0);
       textAlign(CENTER, CENTER);
       value = text2Display[i][j];
       text(value, x + squarePadding, y + squarePadding);

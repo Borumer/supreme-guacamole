@@ -24,7 +24,7 @@ class School {
   }
   
   quickFacts() {
-    console.log(`${this.name} educates ${this.numberOfStudents} students at the level ${this.level}.`)
+    console.log(`${this.name} educates ${this.numberOfStudents} students at the level ${this.level}.`.red)
   }
   static pickSubstituteTeacher(substituteTeachers) {
     const randInd = Math.round(Math.random() * (substituteTeachers.length - 1));
@@ -54,9 +54,5 @@ class HighSchool extends School {
   }
 }
 
-const lorraineHansbury = new PrimarySchool('Lorraine Hansbury', 514, 'Students must be picked up by a parent, guardian, or family member over the age of 16.');
-lorraineHansbury.quickFacts();
-console.log("Substitute teacher for the day: " + School.pickSubstituteTeacher(['Jamal Crawford', 'Lou Williams', 'J. R. Smith', 'James Harden', 'Jason Terry', 'Manu Ginobli']));
+module.exports = {School, PrimarySchool, HighSchool};
 
-const alSmith = new HighSchool('Al E. Smith', 415, ['Baseball', 'Basketball', 'Tennis', 'Volleyball', 'Track and Field'])
-console.log(`Sports teams for ${alSmith.name} ${alSmith.level} school: ${alSmith.sportsTeams}`);

@@ -1,4 +1,4 @@
-I store all my Java, Processing Development Environment Files, and JavaScript programs on here. Feel free to look at it and collaborate. The project is made up of multiple files, so each project file has a designated folder containing the project file, the class(needed for Java files), and an about.txt file talking about what it does. Certain minor projects are all in one folder because there is so little to them. 
+I store all my small Java, Processing Development Environment Files, and JavaScript programs on here. Feel free to look at it and collaborate. The project is made up of multiple files, so each project file has a designated folder containing the project file, the class(needed for Java files), and an about.txt file talking about what it does. Certain minor projects are all in one folder because there is so little to them. 
 
 This project is useful because there are some apps that can be used in daily life that haven't been made before. I plan to add these to my website so they can be used. 
 

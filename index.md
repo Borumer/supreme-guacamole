@@ -24,5 +24,7 @@
 	secondStyle.rel = "stylesheet"; 
 	secondStyle.type = "text/css"; 
 	document.head.appendChild(secondStyle); 
+
+	createLinkElement('image/x-icon', 'shortcut icon', 'images/icon.ico');
 </script>
 

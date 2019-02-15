@@ -43,7 +43,13 @@ class Book extends Media {
     return this._author;
   }
 	get pages() {
-    return this._pages;
+    if (typeof this._pages === 'number') {
+      return this._pages;
+    } else if (parseInt(this._pages)) {
+      return parseInt(this._pages);
+    } else {
+      return 0;
+    }
   }
 }
 
@@ -62,5 +68,50 @@ class Movie extends Media {
   }
 }
 
-module.exports = {Media, Book, Movie}
+class Magazine extends Media {
+  constructor(title, authors, pages) {
+    super(title);
+    this._authors = authors;
+    this._pages = pages;
+  }
+
+  get authors() {
+    if (this._authors.constructor === Array) {
+      return this._authors;
+    } else {
+      return [];
+    }
+  }
+}
+
+class Newspaper extends Media {
+  constructor(newspaperName, headline) {
+    this._newspaperName = newspaperName;
+    this._headline = headline;
+  }
+
+  get headline() {
+    return this._headline.;
+  }
+
+  get newspaperName() {
+    return this._newspaperName;
+  }
+}
+
+class Journal extends Book {
+  constructor(author, pages) {
+    super(author, pages);
+  }
+}
+
+class Music extends Media {
+  constructor(albumName, songs, genre) {
+    this._albumName = albumName;
+    this._songs = songs;
+    this._genre = genre;
+  }
+}
+
+module.exports = {Media, Book, Movie, Magazine, Newspaper, Journal, Music};
 

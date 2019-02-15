@@ -1,6 +1,6 @@
 const SchoolCatalogue = require('./SchoolCatalogue.js');
 const LibraryCatalogue = require('./Library.js');
-const colors = require('../../../node_modules/colors')
+const colors = require('../../../node_modules/colors');
 
 const historyOfEverything = new LibraryCatalogue.Book('A Short History of Nearly Everything', 'Bill Bryson', 544);
 historyOfEverything.toggleCheckOutStatus();

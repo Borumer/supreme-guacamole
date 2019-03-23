@@ -1,0 +1,3 @@
+Geometric Calculator is a calculator app programmed in java using the Scanner library that helps the user find the area of certain 2D shapes.
+3/22/2019
+In the next release, I give you 3-D shapes. Calculate the surface area and volume of any 3-D shapes and get a choice every shape yuo do for 2-D and 3-D. Then, if it is 2-D, you are asked for perimeter or area. If it is 3-D that you chose, you are asked for volume or surface area. 

@@ -1,11 +1,11 @@
-import java.util.Scanner;
+import java.util.*;
 
 public class GeometricCalculator {
-
+ public static Scanner userInput = new Scanner(System.in); 
  public static void main(String[] args) {
-  Scanner userInput = new Scanner(System.in); 
-  int width;
-  int height;
+
+  int rWidth;
+  int rHeight;
   int area;
   double sqrLength;
   double sqrArea;
@@ -20,13 +20,15 @@ public class GeometricCalculator {
   do {
     System.out.println("Type in a shape you would like to find the area of.");
     System.out.println("Options are rectangle, circle, square, triangle.");
+
     shapeChoice = userInput.nextLine();
+   
    if (shapeChoice.equalsIgnoreCase("rectangle")) {
     System.out.println("Type in a width for your rectangle");
-    width = userInput.nextInt();
+    rWidth = IhandleExps();
     System.out.println("Type in a height for your rectangle");
-    height = userInput.nextInt();
-    area = width * height;
+    rHeight = IhandleExps();
+    area = rWidth * rHeight;
     System.out.println("The area is " + area);
    }
    if (shapeChoice.equalsIgnoreCase("square")) {
@@ -55,10 +57,41 @@ public class GeometricCalculator {
     continueChoice = userInput.nextLine(); // Inputs users 'yes' or 'no' answer
   }
    while (continueChoice.equalsIgnoreCase("Yes"));
-  if(continueChoice != "Yes") {
-   userInput.close();
-   System.exit(0);
-  }
+  userInput.close();
+  System.exit(0);
    
  }
+
+ public static int IhandleExps() {
+    int input = 0;
+    try {
+      input = userInput.nextInt();
+    }
+    catch (InputMismatchException e) {
+      System.out.println("The expression you entered cannot be computed.");
+    }
+    catch (Exception e) {
+      System.out.println("You caused an error or an exception in the application. ");
+    }
+    finally {
+      return input;
+    }
+  }
+
+ public static double DhandleExps() {
+    double input = 0;
+    try {
+      input = userInput.nextDouble();
+    }
+    catch (InputMismatchException e) {
+      System.out.println("The expression you entered cannot be computed.");
+    }
+    catch (Exception e) {
+      System.out.println("You caused an error or an exception in the application. ");
+    }
+    finally {
+      return input;
+    }
+  }
+ public static 
 }

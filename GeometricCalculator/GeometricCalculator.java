@@ -93,5 +93,4 @@ public class GeometricCalculator {
       return input;
     }
   }
- public static 
 }

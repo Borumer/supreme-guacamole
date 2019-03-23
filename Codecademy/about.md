@@ -1,1 +1,0 @@
-These are all files used for extension of codecademy course files and backups.

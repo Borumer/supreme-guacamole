@@ -70,7 +70,7 @@ const determineWinner = function(userChoice, computerChoice) {
 };
 
 function playGame() {
-  const userChoice = getUserChoice("Rock");
+  const userChoice = getUserChoice(new UrlSearchParams().get("choice"));
   const computerChoice = getComputerChoice();
   
   console.log(`Your Choice: ${userChoice}`);
